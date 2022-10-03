@@ -197,6 +197,13 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="imgs\bodega.png" />
+    <Content Include="imgs\empleados.jpg" />
+    <Content Include="imgs\finanzas.jpg" />
+    <Content Include="imgs\planilla.png" />
+    <Content Include="imgs\propiedades.jpg" />
+    <Content Include="imgs\tarea.png" />
+    <Content Include="imgs\test.jpg" />
     <Content Include="Models\BaseDatosModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BaseDatosModel.Context.cs</LastGenOutput>
