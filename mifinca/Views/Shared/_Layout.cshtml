@@ -9,28 +9,49 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar fixed-top navbar-expand-lg bg-light">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("miFincaSV", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Propiedades", "Index", "fincas")</li>
-                    <li>@Html.ActionLink("Finanzas", "About", "Home")</li>
-                    <li>@Html.ActionLink("Planilla", "Index", "planillas")</li>
-                    <li>@Html.ActionLink("Empleados", "Index", "empleados")</li>
-                    <li>@Html.ActionLink("Bodegas", "Index", "bodegas")</li>
-                    <li>@Html.ActionLink("Tareas", "Index", "tareas")</li>
-                </ul>
-            </div>
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    @Html.ActionLink("miFincaSV", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @*<a class="navbar-brand" href="#">Navbar</a>*@
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                               @Html.ActionLink("Propiedades", "Index", "fincas", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                               @Html.ActionLink("Finanzas", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                               @Html.ActionLink("Planilla", "Index", "planillas", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                               @Html.ActionLink("Empleados", "Index", "empleados", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                               @Html.ActionLink("Bodegas", "Index", "bodegas", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                               @Html.ActionLink("Tareas", "Index", "tareas", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
+    
+
+
+
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
