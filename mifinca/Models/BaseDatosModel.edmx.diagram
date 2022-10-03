@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9fae6b6ebd3942de8363370cfe26c3d6" Name="Diagram1">
+        <EntityTypeShape EntityType="mifincaModel.bodega" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifincaModel.empleado" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifincaModel.finca" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifincaModel.planilla" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifincaModel.producto" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifincaModel.tarea" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifincaModel.usuario" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="mifincaModel.FK_bodega_finca" ManuallyRouted="false" />
+        <AssociationConnector Association="mifincaModel.FK_producto_bodega" ManuallyRouted="false" />
+        <AssociationConnector Association="mifincaModel.FK_empleado_planilla" ManuallyRouted="false" />
+        <AssociationConnector Association="mifincaModel.FK_empleado_tarea" ManuallyRouted="false" />
+        <AssociationConnector Association="mifincaModel.FK_planilla_finca" ManuallyRouted="false" />
+        <AssociationConnector Association="mifincaModel.FK_usuario_finca" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

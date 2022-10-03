@@ -1,0 +1,74 @@
+﻿@model mifinca.Models.finca
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>finca</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_bodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_bodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto_finca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foto_finca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.extension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.extension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.localizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.localizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tablones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tablones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.desripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_finca }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

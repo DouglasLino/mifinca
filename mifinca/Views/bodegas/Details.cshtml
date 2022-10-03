@@ -1,0 +1,26 @@
+﻿@model mifinca.Models.bodega
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>bodega</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.finca.foto_finca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.finca.foto_finca)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_bodega }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
