@@ -17,7 +17,8 @@ namespace mifinca.Controllers
         // GET: fincas
         public ActionResult Index()
         {
-            return View(db.finca.ToList());
+            var finca = db.finca.Include(f => f.bodega);
+            return View(finca.ToList());
         }
 
         // GET: fincas/Details/5
@@ -38,6 +39,7 @@ namespace mifinca.Controllers
         // GET: fincas/Create
         public ActionResult Create()
         {
+            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_finca,id_bodega,foto_finca,nombre,extension,localizacion,tablones,desripcion")] finca finca)
+        public ActionResult Create([Bind(Include = "id_finca,id_bodega,foto_finca,nombre_finca,extension,planoCatastral,localizacionEntrada,tablones,desripcion,msnm_altura")] finca finca)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace mifinca.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", finca.id_bodega);
             return View(finca);
         }
 
@@ -70,6 +73,7 @@ namespace mifinca.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", finca.id_bodega);
             return View(finca);
         }
 
@@ -78,7 +82,7 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_finca,id_bodega,foto_finca,nombre,extension,localizacion,tablones,desripcion")] finca finca)
+        public ActionResult Edit([Bind(Include = "id_finca,id_bodega,foto_finca,nombre_finca,extension,planoCatastral,localizacionEntrada,tablones,desripcion,msnm_altura")] finca finca)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace mifinca.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", finca.id_bodega);
             return View(finca);
         }
 

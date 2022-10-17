@@ -14,12 +14,12 @@ namespace mifinca.Models
     
     public partial class producto
     {
-        public int codigo_producto { get; set; }
+        public int id_producto { get; set; }
         public int id_bodega { get; set; }
         public string foto_producto { get; set; }
-        public string nombre_prod { get; set; }
-        public int extension { get; set; }
-        public string localizacion { get; set; }
+        public string nombre_producto { get; set; }
+        public string descripcion { get; set; }
+        public int cantidad { get; set; }
     
         public virtual bodega bodega { get; set; }
     }

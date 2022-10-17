@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mifincaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bodega">
+          <Key>
+            <PropertyRef Name="id_bodega" />
+          </Key>
+          <Property Name="id_bodega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_finca" Type="int" Nullable="false" />
+          <Property Name="fecha_ingreso_producto" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_finca" Type="int" Nullable="false" />
+          <Property Name="nombre_empleado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido_empleado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion_empleado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono_empleado" Type="int" Nullable="false" />
+          <Property Name="telefonoEmergencia_empleado" Type="int" Nullable="false" />
+          <Property Name="qr_empleado" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="finca">
+          <Key>
+            <PropertyRef Name="id_finca" />
+          </Key>
+          <Property Name="id_finca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_bodega" Type="int" Nullable="false" />
+          <Property Name="foto_finca" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="nombre_finca" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="extension" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="planoCatastral" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="localizacionEntrada" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tablones" Type="int" Nullable="false" />
+          <Property Name="desripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="msnm_altura" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="planilla">
+          <Key>
+            <PropertyRef Name="id_planilla" />
+          </Key>
+          <Property Name="id_planilla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="id_finca" Type="int" Nullable="false" />
+          <Property Name="fecha_resolucion" Type="date" Nullable="false" />
+          <Property Name="csv_planilla" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_bodega" Type="int" Nullable="false" />
+          <Property Name="foto_producto" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="nombre_producto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tarea">
+          <Key>
+            <PropertyRef Name="id_tarea" />
+          </Key>
+          <Property Name="id_tarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empleado" Type="int" Nullable="false" />
+          <Property Name="id_tipo" Type="int" Nullable="false" />
+          <Property Name="fecha_inicio" Type="date" Nullable="false" />
+          <Property Name="fecha_fin" Type="date" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_tarea">
+          <Key>
+            <PropertyRef Name="id_tipo" />
+          </Key>
+          <Property Name="id_tipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_finca" Type="int" Nullable="false" />
+          <Property Name="nombre_usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password_usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fec_nac" Type="date" Nullable="false" />
+          <Property Name="telefono_usuario" Type="int" Nullable="false" />
+          <Property Name="direccion_usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="foto" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_bodega_to_finca">
+          <End Role="bodega" Type="Self.bodega" Multiplicity="1" />
+          <End Role="finca" Type="Self.finca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bodega">
+              <PropertyRef Name="id_bodega" />
+            </Principal>
+            <Dependent Role="finca">
+              <PropertyRef Name="id_bodega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bodega_to_producto">
+          <End Role="bodega" Type="Self.bodega" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bodega">
+              <PropertyRef Name="id_bodega" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="id_bodega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empleado_to_planilla">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="planilla" Type="Self.planilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="planilla">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empleado_to_tarea">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="tarea" Type="Self.tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="tarea">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_finca_to_empleado">
+          <End Role="finca" Type="Self.finca" Multiplicity="1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="finca">
+              <PropertyRef Name="id_finca" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="id_finca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_finca_to_planilla">
+          <End Role="finca" Type="Self.finca" Multiplicity="1" />
+          <End Role="planilla" Type="Self.planilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="finca">
+              <PropertyRef Name="id_finca" />
+            </Principal>
+            <Dependent Role="planilla">
+              <PropertyRef Name="id_finca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_finca_to_usuario">
+          <End Role="finca" Type="Self.finca" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="finca">
+              <PropertyRef Name="id_finca" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id_finca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tipo_tarea_to_tarea">
+          <End Role="tipo_tarea" Type="Self.tipo_tarea" Multiplicity="1" />
+          <End Role="tarea" Type="Self.tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_tarea">
+              <PropertyRef Name="id_tipo" />
+            </Principal>
+            <Dependent Role="tarea">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mifincaModelStoreContainer">
+          <EntitySet Name="bodega" EntityType="Self.bodega" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="finca" EntityType="Self.finca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="planilla" EntityType="Self.planilla" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tarea" EntityType="Self.tarea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_tarea" EntityType="Self.tipo_tarea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_bodega_to_finca" Association="Self.FK_bodega_to_finca">
+            <End Role="bodega" EntitySet="bodega" />
+            <End Role="finca" EntitySet="finca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bodega_to_producto" Association="Self.FK_bodega_to_producto">
+            <End Role="bodega" EntitySet="bodega" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empleado_to_planilla" Association="Self.FK_empleado_to_planilla">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="planilla" EntitySet="planilla" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empleado_to_tarea" Association="Self.FK_empleado_to_tarea">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="tarea" EntitySet="tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_finca_to_empleado" Association="Self.FK_finca_to_empleado">
+            <End Role="finca" EntitySet="finca" />
+            <End Role="empleado" EntitySet="empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_finca_to_planilla" Association="Self.FK_finca_to_planilla">
+            <End Role="finca" EntitySet="finca" />
+            <End Role="planilla" EntitySet="planilla" />
+          </AssociationSet>
+          <AssociationSet Name="FK_finca_to_usuario" Association="Self.FK_finca_to_usuario">
+            <End Role="finca" EntitySet="finca" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipo_tarea_to_tarea" Association="Self.FK_tipo_tarea_to_tarea">
+            <End Role="tipo_tarea" EntitySet="tipo_tarea" />
+            <End Role="tarea" EntitySet="tarea" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mifincaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bodega">
+          <Key>
+            <PropertyRef Name="id_bodega" />
+          </Key>
+          <Property Name="id_bodega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_finca" Type="Int32" Nullable="false" />
+          <Property Name="fecha_ingreso_producto" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="finca" Relationship="Self.FK_bodega_to_finca" FromRole="bodega" ToRole="finca" />
+          <NavigationProperty Name="producto" Relationship="Self.FK_bodega_to_producto" FromRole="bodega" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_finca" Type="Int32" Nullable="false" />
+          <Property Name="nombre_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellido_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="direccion_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefono_empleado" Type="Int32" Nullable="false" />
+          <Property Name="telefonoEmergencia_empleado" Type="Int32" Nullable="false" />
+          <Property Name="qr_empleado" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="planilla" Relationship="Self.FK_empleado_to_planilla" FromRole="empleado" ToRole="planilla" />
+          <NavigationProperty Name="tarea" Relationship="Self.FK_empleado_to_tarea" FromRole="empleado" ToRole="tarea" />
+          <NavigationProperty Name="finca" Relationship="Self.FK_finca_to_empleado" FromRole="empleado" ToRole="finca" />
+        </EntityType>
+        <EntityType Name="finca">
+          <Key>
+            <PropertyRef Name="id_finca" />
+          </Key>
+          <Property Name="id_finca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_bodega" Type="Int32" Nullable="false" />
+          <Property Name="foto_finca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre_finca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="extension" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="planoCatastral" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="localizacionEntrada" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tablones" Type="Int32" Nullable="false" />
+          <Property Name="desripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="msnm_altura" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bodega" Relationship="Self.FK_bodega_to_finca" FromRole="finca" ToRole="bodega" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK_finca_to_empleado" FromRole="finca" ToRole="empleado" />
+          <NavigationProperty Name="planilla" Relationship="Self.FK_finca_to_planilla" FromRole="finca" ToRole="planilla" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_finca_to_usuario" FromRole="finca" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="planilla">
+          <Key>
+            <PropertyRef Name="id_planilla" />
+          </Key>
+          <Property Name="id_planilla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="id_finca" Type="Int32" Nullable="false" />
+          <Property Name="fecha_resolucion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="csv_planilla" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK_empleado_to_planilla" FromRole="planilla" ToRole="empleado" />
+          <NavigationProperty Name="finca" Relationship="Self.FK_finca_to_planilla" FromRole="planilla" ToRole="finca" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_bodega" Type="Int32" Nullable="false" />
+          <Property Name="foto_producto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bodega" Relationship="Self.FK_bodega_to_producto" FromRole="producto" ToRole="bodega" />
+        </EntityType>
+        <EntityType Name="tarea">
+          <Key>
+            <PropertyRef Name="id_tarea" />
+          </Key>
+          <Property Name="id_tarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_empleado" Type="Int32" Nullable="false" />
+          <Property Name="id_tipo" Type="Int32" Nullable="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK_empleado_to_tarea" FromRole="tarea" ToRole="empleado" />
+          <NavigationProperty Name="tipo_tarea" Relationship="Self.FK_tipo_tarea_to_tarea" FromRole="tarea" ToRole="tipo_tarea" />
+        </EntityType>
+        <EntityType Name="tipo_tarea">
+          <Key>
+            <PropertyRef Name="id_tipo" />
+          </Key>
+          <Property Name="id_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tarea" Relationship="Self.FK_tipo_tarea_to_tarea" FromRole="tipo_tarea" ToRole="tarea" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_finca" Type="Int32" Nullable="false" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password_usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fec_nac" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="telefono_usuario" Type="Int32" Nullable="false" />
+          <Property Name="direccion_usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="foto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="finca" Relationship="Self.FK_finca_to_usuario" FromRole="usuario" ToRole="finca" />
+        </EntityType>
+        <Association Name="FK_bodega_to_finca">
+          <End Role="bodega" Type="Self.bodega" Multiplicity="1" />
+          <End Role="finca" Type="Self.finca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bodega">
+              <PropertyRef Name="id_bodega" />
+            </Principal>
+            <Dependent Role="finca">
+              <PropertyRef Name="id_bodega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bodega_to_producto">
+          <End Role="bodega" Type="Self.bodega" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bodega">
+              <PropertyRef Name="id_bodega" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="id_bodega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empleado_to_planilla">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="planilla" Type="Self.planilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="planilla">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empleado_to_tarea">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="tarea" Type="Self.tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="tarea">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_finca_to_empleado">
+          <End Role="finca" Type="Self.finca" Multiplicity="1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="finca">
+              <PropertyRef Name="id_finca" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="id_finca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_finca_to_planilla">
+          <End Role="finca" Type="Self.finca" Multiplicity="1" />
+          <End Role="planilla" Type="Self.planilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="finca">
+              <PropertyRef Name="id_finca" />
+            </Principal>
+            <Dependent Role="planilla">
+              <PropertyRef Name="id_finca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_finca_to_usuario">
+          <End Role="finca" Type="Self.finca" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="finca">
+              <PropertyRef Name="id_finca" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id_finca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tipo_tarea_to_tarea">
+          <End Role="tipo_tarea" Type="Self.tipo_tarea" Multiplicity="1" />
+          <End Role="tarea" Type="Self.tarea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_tarea">
+              <PropertyRef Name="id_tipo" />
+            </Principal>
+            <Dependent Role="tarea">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mifincaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bodega" EntityType="Self.bodega" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" />
+          <EntitySet Name="finca" EntityType="Self.finca" />
+          <EntitySet Name="planilla" EntityType="Self.planilla" />
+          <EntitySet Name="producto" EntityType="Self.producto" />
+          <EntitySet Name="tarea" EntityType="Self.tarea" />
+          <EntitySet Name="tipo_tarea" EntityType="Self.tipo_tarea" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_bodega_to_finca" Association="Self.FK_bodega_to_finca">
+            <End Role="bodega" EntitySet="bodega" />
+            <End Role="finca" EntitySet="finca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bodega_to_producto" Association="Self.FK_bodega_to_producto">
+            <End Role="bodega" EntitySet="bodega" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empleado_to_planilla" Association="Self.FK_empleado_to_planilla">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="planilla" EntitySet="planilla" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empleado_to_tarea" Association="Self.FK_empleado_to_tarea">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="tarea" EntitySet="tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_finca_to_empleado" Association="Self.FK_finca_to_empleado">
+            <End Role="finca" EntitySet="finca" />
+            <End Role="empleado" EntitySet="empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_finca_to_planilla" Association="Self.FK_finca_to_planilla">
+            <End Role="finca" EntitySet="finca" />
+            <End Role="planilla" EntitySet="planilla" />
+          </AssociationSet>
+          <AssociationSet Name="FK_finca_to_usuario" Association="Self.FK_finca_to_usuario">
+            <End Role="finca" EntitySet="finca" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipo_tarea_to_tarea" Association="Self.FK_tipo_tarea_to_tarea">
+            <End Role="tipo_tarea" EntitySet="tipo_tarea" />
+            <End Role="tarea" EntitySet="tarea" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mifincaModelStoreContainer" CdmEntityContainer="mifincaEntities">
+          <EntitySetMapping Name="bodega">
+            <EntityTypeMapping TypeName="mifincaModel.bodega">
+              <MappingFragment StoreEntitySet="bodega">
+                <ScalarProperty Name="id_bodega" ColumnName="id_bodega" />
+                <ScalarProperty Name="id_finca" ColumnName="id_finca" />
+                <ScalarProperty Name="fecha_ingreso_producto" ColumnName="fecha_ingreso_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleado">
+            <EntityTypeMapping TypeName="mifincaModel.empleado">
+              <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_finca" ColumnName="id_finca" />
+                <ScalarProperty Name="nombre_empleado" ColumnName="nombre_empleado" />
+                <ScalarProperty Name="apellido_empleado" ColumnName="apellido_empleado" />
+                <ScalarProperty Name="direccion_empleado" ColumnName="direccion_empleado" />
+                <ScalarProperty Name="telefono_empleado" ColumnName="telefono_empleado" />
+                <ScalarProperty Name="telefonoEmergencia_empleado" ColumnName="telefonoEmergencia_empleado" />
+                <ScalarProperty Name="qr_empleado" ColumnName="qr_empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="finca">
+            <EntityTypeMapping TypeName="mifincaModel.finca">
+              <MappingFragment StoreEntitySet="finca">
+                <ScalarProperty Name="id_finca" ColumnName="id_finca" />
+                <ScalarProperty Name="id_bodega" ColumnName="id_bodega" />
+                <ScalarProperty Name="foto_finca" ColumnName="foto_finca" />
+                <ScalarProperty Name="nombre_finca" ColumnName="nombre_finca" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="planoCatastral" ColumnName="planoCatastral" />
+                <ScalarProperty Name="localizacionEntrada" ColumnName="localizacionEntrada" />
+                <ScalarProperty Name="tablones" ColumnName="tablones" />
+                <ScalarProperty Name="desripcion" ColumnName="desripcion" />
+                <ScalarProperty Name="msnm_altura" ColumnName="msnm_altura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="planilla">
+            <EntityTypeMapping TypeName="mifincaModel.planilla">
+              <MappingFragment StoreEntitySet="planilla">
+                <ScalarProperty Name="id_planilla" ColumnName="id_planilla" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_finca" ColumnName="id_finca" />
+                <ScalarProperty Name="fecha_resolucion" ColumnName="fecha_resolucion" />
+                <ScalarProperty Name="csv_planilla" ColumnName="csv_planilla" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto">
+            <EntityTypeMapping TypeName="mifincaModel.producto">
+              <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_bodega" ColumnName="id_bodega" />
+                <ScalarProperty Name="foto_producto" ColumnName="foto_producto" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tarea">
+            <EntityTypeMapping TypeName="mifincaModel.tarea">
+              <MappingFragment StoreEntitySet="tarea">
+                <ScalarProperty Name="id_tarea" ColumnName="id_tarea" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_tarea">
+            <EntityTypeMapping TypeName="mifincaModel.tipo_tarea">
+              <MappingFragment StoreEntitySet="tipo_tarea">
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="mifincaModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_finca" ColumnName="id_finca" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="password_usuario" ColumnName="password_usuario" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="fec_nac" ColumnName="fec_nac" />
+                <ScalarProperty Name="telefono_usuario" ColumnName="telefono_usuario" />
+                <ScalarProperty Name="direccion_usuario" ColumnName="direccion_usuario" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

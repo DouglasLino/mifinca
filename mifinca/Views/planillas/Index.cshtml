@@ -15,7 +15,10 @@
             @Html.DisplayNameFor(model => model.fecha_resolucion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.empleado.nombre)
+            @Html.DisplayNameFor(model => model.csv_planilla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.empleado.nombre_empleado)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.finca.foto_finca)
@@ -29,15 +32,18 @@
             @Html.DisplayFor(modelItem => item.fecha_resolucion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.empleado.nombre)
+            @Html.DisplayFor(modelItem => item.csv_planilla)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.empleado.nombre_empleado)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.finca.foto_finca)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_empleado }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_empleado }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_empleado })
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_planilla }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_planilla }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_planilla })
         </td>
     </tr>
 }

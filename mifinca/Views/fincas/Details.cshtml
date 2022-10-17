@@ -11,14 +11,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.id_bodega)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.id_bodega)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.foto_finca)
         </dt>
 
@@ -27,11 +19,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.nombre_finca)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.nombre)
+            @Html.DisplayFor(model => model.nombre_finca)
         </dd>
 
         <dt>
@@ -43,11 +35,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.localizacion)
+            @Html.DisplayNameFor(model => model.planoCatastral)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.localizacion)
+            @Html.DisplayFor(model => model.planoCatastral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.localizacionEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.localizacionEntrada)
         </dd>
 
         <dt>
@@ -64,6 +64,22 @@
 
         <dd>
             @Html.DisplayFor(model => model.desripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.msnm_altura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.msnm_altura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bodega.id_bodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bodega.id_bodega)
         </dd>
 
     </dl>

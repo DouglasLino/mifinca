@@ -17,8 +17,7 @@ namespace mifinca.Controllers
         // GET: bodegas
         public ActionResult Index()
         {
-            var bodega = db.bodega.Include(b => b.finca);
-            return View(bodega.ToList());
+            return View(db.bodega.ToList());
         }
 
         // GET: bodegas/Details/5
@@ -39,7 +38,6 @@ namespace mifinca.Controllers
         // GET: bodegas/Create
         public ActionResult Create()
         {
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_bodega,id_finca")] bodega bodega)
+        public ActionResult Create([Bind(Include = "id_bodega,id_finca,fecha_ingreso_producto")] bodega bodega)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace mifinca.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", bodega.id_finca);
             return View(bodega);
         }
 
@@ -73,7 +70,6 @@ namespace mifinca.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", bodega.id_finca);
             return View(bodega);
         }
 
@@ -82,7 +78,7 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_bodega,id_finca")] bodega bodega)
+        public ActionResult Edit([Bind(Include = "id_bodega,id_finca,fecha_ingreso_producto")] bodega bodega)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace mifinca.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", bodega.id_finca);
             return View(bodega);
         }
 

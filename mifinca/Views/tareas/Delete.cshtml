@@ -12,19 +12,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.fecha_inicio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.nombre)
+            @Html.DisplayFor(model => model.fecha_inicio)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fecha)
+            @Html.DisplayNameFor(model => model.fecha_fin)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha)
+            @Html.DisplayFor(model => model.fecha_fin)
         </dd>
 
         <dt>
@@ -33,6 +33,22 @@
 
         <dd>
             @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empleado.nombre_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empleado.nombre_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_tarea.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_tarea.tipo)
         </dd>
 
     </dl>

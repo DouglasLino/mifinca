@@ -10,112 +10,112 @@ using mifinca.Models;
 
 namespace mifinca.Controllers
 {
-    public class productoController : Controller
+    public class empleadoesController : Controller
     {
         private mifincaEntities db = new mifincaEntities();
 
-        // GET: producto
+        // GET: empleadoes
         public ActionResult Index()
         {
-            var producto = db.producto.Include(p => p.bodega);
-            return View(producto.ToList());
+            var empleado = db.empleado.Include(e => e.finca);
+            return View(empleado.ToList());
         }
 
-        // GET: producto/Details/5
+        // GET: empleadoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            producto producto = db.producto.Find(id);
-            if (producto == null)
+            empleado empleado = db.empleado.Find(id);
+            if (empleado == null)
             {
                 return HttpNotFound();
             }
-            return View(producto);
+            return View(empleado);
         }
 
-        // GET: producto/Create
+        // GET: empleadoes/Create
         public ActionResult Create()
         {
-            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega");
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca");
             return View();
         }
 
-        // POST: producto/Create
+        // POST: empleadoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "codigo_producto,id_bodega,foto_producto,nombre_prod,extension,localizacion")] producto producto)
+        public ActionResult Create([Bind(Include = "id_empleado,id_finca,nombre_empleado,apellido_empleado,direccion_empleado,telefono_empleado,telefonoEmergencia_empleado,qr_empleado")] empleado empleado)
         {
             if (ModelState.IsValid)
             {
-                db.producto.Add(producto);
+                db.empleado.Add(empleado);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", producto.id_bodega);
-            return View(producto);
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", empleado.id_finca);
+            return View(empleado);
         }
 
-        // GET: producto/Edit/5
+        // GET: empleadoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            producto producto = db.producto.Find(id);
-            if (producto == null)
+            empleado empleado = db.empleado.Find(id);
+            if (empleado == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", producto.id_bodega);
-            return View(producto);
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", empleado.id_finca);
+            return View(empleado);
         }
 
-        // POST: producto/Edit/5
+        // POST: empleadoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codigo_producto,id_bodega,foto_producto,nombre_prod,extension,localizacion")] producto producto)
+        public ActionResult Edit([Bind(Include = "id_empleado,id_finca,nombre_empleado,apellido_empleado,direccion_empleado,telefono_empleado,telefonoEmergencia_empleado,qr_empleado")] empleado empleado)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(producto).State = EntityState.Modified;
+                db.Entry(empleado).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", producto.id_bodega);
-            return View(producto);
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", empleado.id_finca);
+            return View(empleado);
         }
 
-        // GET: producto/Delete/5
+        // GET: empleadoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            producto producto = db.producto.Find(id);
-            if (producto == null)
+            empleado empleado = db.empleado.Find(id);
+            if (empleado == null)
             {
                 return HttpNotFound();
             }
-            return View(producto);
+            return View(empleado);
         }
 
-        // POST: producto/Delete/5
+        // POST: empleadoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            producto producto = db.producto.Find(id);
-            db.producto.Remove(producto);
+            empleado empleado = db.empleado.Find(id);
+            db.empleado.Remove(empleado);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

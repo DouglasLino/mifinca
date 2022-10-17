@@ -18,9 +18,9 @@
         @Html.HiddenFor(model => model.id_finca)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_bodega, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_bodega, "id_bodega", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.id_bodega, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("id_bodega", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_bodega, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,10 +34,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.nombre_finca, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.nombre_finca, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre_finca, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -50,10 +50,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.localizacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.planoCatastral, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.localizacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.localizacion, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.planoCatastral, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.planoCatastral, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.localizacionEntrada, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.localizacionEntrada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.localizacionEntrada, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -70,6 +78,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.desripcion, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.desripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.msnm_altura, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.msnm_altura, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.msnm_altura, "", new { @class = "text-danger" })
             </div>
         </div>
 

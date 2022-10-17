@@ -1,0 +1,74 @@
+﻿@model mifinca.Models.empleado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefonoEmergencia_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoEmergencia_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qr_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qr_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.finca.foto_finca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.finca.foto_finca)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_empleado }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

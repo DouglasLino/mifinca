@@ -129,51 +129,56 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\bodegasController.cs" />
-    <Compile Include="Controllers\empleadosController.cs" />
+    <Compile Include="Controllers\empleadoesController.cs" />
+    <Compile Include="Controllers\finanzasController.cs" />
     <Compile Include="Controllers\fincasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\planillasController.cs" />
-    <Compile Include="Controllers\productoController.cs" />
+    <Compile Include="Controllers\productoesController.cs" />
     <Compile Include="Controllers\tareasController.cs" />
+    <Compile Include="Controllers\tipo_tareaController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaseDatosModel.Context.cs">
+    <Compile Include="Models\basedatosmifinca.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseDatosModel.Context.tt</DependentUpon>
+      <DependentUpon>basedatosmifinca.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaseDatosModel.cs">
+    <Compile Include="Models\basedatosmifinca.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+      <DependentUpon>basedatosmifinca.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaseDatosModel.Designer.cs">
+    <Compile Include="Models\basedatosmifinca.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
+      <DependentUpon>basedatosmifinca.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\bodega.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+      <DependentUpon>basedatosmifinca.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\empleado.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+      <DependentUpon>basedatosmifinca.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\finca.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+      <DependentUpon>basedatosmifinca.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\planilla.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+      <DependentUpon>basedatosmifinca.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\producto.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+      <DependentUpon>basedatosmifinca.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tarea.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+      <DependentUpon>basedatosmifinca.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tipo_tarea.cs">
+      <DependentUpon>basedatosmifinca.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuario.cs">
-      <DependentUpon>BaseDatosModel.tt</DependentUpon>
+      <DependentUpon>basedatosmifinca.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -204,16 +209,6 @@
     <Content Include="imgs\propiedades.jpg" />
     <Content Include="imgs\tarea.png" />
     <Content Include="imgs\test.jpg" />
-    <Content Include="Models\BaseDatosModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BaseDatosModel.Context.cs</LastGenOutput>
-      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\BaseDatosModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
-      <LastGenOutput>BaseDatosModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -322,12 +317,15 @@
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
-    <EntityDeploy Include="Models\BaseDatosModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BaseDatosModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BaseDatosModel.edmx.diagram">
-      <DependentUpon>BaseDatosModel.edmx</DependentUpon>
+    <Content Include="Models\basedatosmifinca.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>basedatosmifinca.edmx</DependentUpon>
+      <LastGenOutput>basedatosmifinca.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\basedatosmifinca.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>basedatosmifinca.edmx</DependentUpon>
+      <LastGenOutput>basedatosmifinca.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -341,6 +339,13 @@
     <Content Include="Scripts\bootstrap.esm.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <EntityDeploy Include="Models\basedatosmifinca.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>basedatosmifinca.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\basedatosmifinca.edmx.diagram">
+      <DependentUpon>basedatosmifinca.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -366,41 +371,47 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\bodegas\Create.cshtml" />
-    <Content Include="Views\bodegas\Delete.cshtml" />
-    <Content Include="Views\bodegas\Details.cshtml" />
-    <Content Include="Views\bodegas\Edit.cshtml" />
-    <Content Include="Views\bodegas\Index.cshtml" />
-    <Content Include="Views\producto\Create.cshtml" />
-    <Content Include="Views\producto\Delete.cshtml" />
-    <Content Include="Views\producto\Details.cshtml" />
-    <Content Include="Views\producto\Edit.cshtml" />
-    <Content Include="Views\producto\Index.cshtml" />
-    <Content Include="Views\fincas\Create.cshtml" />
-    <Content Include="Views\fincas\Delete.cshtml" />
-    <Content Include="Views\fincas\Details.cshtml" />
-    <Content Include="Views\fincas\Edit.cshtml" />
-    <Content Include="Views\fincas\Index.cshtml" />
     <Content Include="Views\usuarios\Create.cshtml" />
     <Content Include="Views\usuarios\Delete.cshtml" />
     <Content Include="Views\usuarios\Details.cshtml" />
     <Content Include="Views\usuarios\Edit.cshtml" />
     <Content Include="Views\usuarios\Index.cshtml" />
+    <Content Include="Views\fincas\Create.cshtml" />
+    <Content Include="Views\fincas\Delete.cshtml" />
+    <Content Include="Views\fincas\Details.cshtml" />
+    <Content Include="Views\fincas\Edit.cshtml" />
+    <Content Include="Views\fincas\Index.cshtml" />
     <Content Include="Views\planillas\Create.cshtml" />
     <Content Include="Views\planillas\Delete.cshtml" />
     <Content Include="Views\planillas\Details.cshtml" />
     <Content Include="Views\planillas\Edit.cshtml" />
     <Content Include="Views\planillas\Index.cshtml" />
-    <Content Include="Views\empleados\Create.cshtml" />
-    <Content Include="Views\empleados\Delete.cshtml" />
-    <Content Include="Views\empleados\Details.cshtml" />
-    <Content Include="Views\empleados\Edit.cshtml" />
-    <Content Include="Views\empleados\Index.cshtml" />
+    <Content Include="Views\empleadoes\Create.cshtml" />
+    <Content Include="Views\empleadoes\Delete.cshtml" />
+    <Content Include="Views\empleadoes\Details.cshtml" />
+    <Content Include="Views\empleadoes\Edit.cshtml" />
+    <Content Include="Views\empleadoes\Index.cshtml" />
     <Content Include="Views\tareas\Create.cshtml" />
     <Content Include="Views\tareas\Delete.cshtml" />
     <Content Include="Views\tareas\Details.cshtml" />
     <Content Include="Views\tareas\Edit.cshtml" />
     <Content Include="Views\tareas\Index.cshtml" />
+    <Content Include="Views\tipo_tarea\Create.cshtml" />
+    <Content Include="Views\tipo_tarea\Delete.cshtml" />
+    <Content Include="Views\tipo_tarea\Details.cshtml" />
+    <Content Include="Views\tipo_tarea\Edit.cshtml" />
+    <Content Include="Views\tipo_tarea\Index.cshtml" />
+    <Content Include="Views\bodegas\Create.cshtml" />
+    <Content Include="Views\bodegas\Delete.cshtml" />
+    <Content Include="Views\bodegas\Details.cshtml" />
+    <Content Include="Views\bodegas\Edit.cshtml" />
+    <Content Include="Views\bodegas\Index.cshtml" />
+    <Content Include="Views\productoes\Create.cshtml" />
+    <Content Include="Views\productoes\Delete.cshtml" />
+    <Content Include="Views\productoes\Details.cshtml" />
+    <Content Include="Views\productoes\Edit.cshtml" />
+    <Content Include="Views\productoes\Index.cshtml" />
+    <Content Include="Views\finanzas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

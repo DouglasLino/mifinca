@@ -1,0 +1,69 @@
+﻿@model IEnumerable<mifinca.Models.empleado>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_empleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido_empleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccion_empleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono_empleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefonoEmergencia_empleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qr_empleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.finca.foto_finca)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_empleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido_empleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion_empleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono_empleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefonoEmergencia_empleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qr_empleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.finca.foto_finca)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_empleado }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_empleado }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_empleado })
+        </td>
+    </tr>
+}
+
+</table>

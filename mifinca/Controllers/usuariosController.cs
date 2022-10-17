@@ -22,7 +22,7 @@ namespace mifinca.Controllers
         }
 
         // GET: usuarios/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -48,7 +48,7 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "usuario1,id_finca,nombre,password,correo,fec_nac,telefono,direccion,foto")] usuario usuario)
+        public ActionResult Create([Bind(Include = "id_usuario,id_finca,nombre_usuario,password_usuario,correo,fec_nac,telefono_usuario,direccion_usuario,foto")] usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace mifinca.Controllers
         }
 
         // GET: usuarios/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -82,7 +82,7 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "usuario1,id_finca,nombre,password,correo,fec_nac,telefono,direccion,foto")] usuario usuario)
+        public ActionResult Edit([Bind(Include = "id_usuario,id_finca,nombre_usuario,password_usuario,correo,fec_nac,telefono_usuario,direccion_usuario,foto")] usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace mifinca.Controllers
         }
 
         // GET: usuarios/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -112,7 +112,7 @@ namespace mifinca.Controllers
         // POST: usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             usuario usuario = db.usuario.Find(id);
             db.usuario.Remove(usuario);

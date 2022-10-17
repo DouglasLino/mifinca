@@ -14,9 +14,11 @@ namespace mifinca.Models
     
     public partial class planilla
     {
+        public int id_planilla { get; set; }
         public int id_empleado { get; set; }
         public int id_finca { get; set; }
-        public string fecha_resolucion { get; set; }
+        public System.DateTime fecha_resolucion { get; set; }
+        public string csv_planilla { get; set; }
     
         public virtual empleado empleado { get; set; }
         public virtual finca finca { get; set; }

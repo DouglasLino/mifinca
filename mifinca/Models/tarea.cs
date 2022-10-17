@@ -14,18 +14,14 @@ namespace mifinca.Models
     
     public partial class tarea
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tarea()
-        {
-            this.empleado = new HashSet<empleado>();
-        }
-    
         public int id_tarea { get; set; }
-        public string nombre { get; set; }
-        public string fecha { get; set; }
+        public int id_empleado { get; set; }
+        public int id_tipo { get; set; }
+        public System.DateTime fecha_inicio { get; set; }
+        public System.DateTime fecha_fin { get; set; }
         public string descripcion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empleado> empleado { get; set; }
+        public virtual empleado empleado { get; set; }
+        public virtual tipo_tarea tipo_tarea { get; set; }
     }
 }

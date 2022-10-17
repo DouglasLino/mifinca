@@ -10,116 +10,112 @@ using mifinca.Models;
 
 namespace mifinca.Controllers
 {
-    public class planillasController : Controller
+    public class productoesController : Controller
     {
         private mifincaEntities db = new mifincaEntities();
 
-        // GET: planillas
+        // GET: productoes
         public ActionResult Index()
         {
-            var planilla = db.planilla.Include(p => p.empleado).Include(p => p.finca);
-            return View(planilla.ToList());
+            var producto = db.producto.Include(p => p.bodega);
+            return View(producto.ToList());
         }
 
-        // GET: planillas/Details/5
+        // GET: productoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            planilla planilla = db.planilla.Find(id);
-            if (planilla == null)
+            producto producto = db.producto.Find(id);
+            if (producto == null)
             {
                 return HttpNotFound();
             }
-            return View(planilla);
+            return View(producto);
         }
 
-        // GET: planillas/Create
+        // GET: productoes/Create
         public ActionResult Create()
         {
-            ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado");
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca");
+            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega");
             return View();
         }
 
-        // POST: planillas/Create
+        // POST: productoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_planilla,id_empleado,id_finca,fecha_resolucion,csv_planilla")] planilla planilla)
+        public ActionResult Create([Bind(Include = "id_producto,id_bodega,foto_producto,nombre_producto,descripcion,cantidad")] producto producto)
         {
             if (ModelState.IsValid)
             {
-                db.planilla.Add(planilla);
+                db.producto.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado", planilla.id_empleado);
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", planilla.id_finca);
-            return View(planilla);
+            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", producto.id_bodega);
+            return View(producto);
         }
 
-        // GET: planillas/Edit/5
+        // GET: productoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            planilla planilla = db.planilla.Find(id);
-            if (planilla == null)
+            producto producto = db.producto.Find(id);
+            if (producto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado", planilla.id_empleado);
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", planilla.id_finca);
-            return View(planilla);
+            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", producto.id_bodega);
+            return View(producto);
         }
 
-        // POST: planillas/Edit/5
+        // POST: productoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_planilla,id_empleado,id_finca,fecha_resolucion,csv_planilla")] planilla planilla)
+        public ActionResult Edit([Bind(Include = "id_producto,id_bodega,foto_producto,nombre_producto,descripcion,cantidad")] producto producto)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(planilla).State = EntityState.Modified;
+                db.Entry(producto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado", planilla.id_empleado);
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", planilla.id_finca);
-            return View(planilla);
+            ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", producto.id_bodega);
+            return View(producto);
         }
 
-        // GET: planillas/Delete/5
+        // GET: productoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            planilla planilla = db.planilla.Find(id);
-            if (planilla == null)
+            producto producto = db.producto.Find(id);
+            if (producto == null)
             {
                 return HttpNotFound();
             }
-            return View(planilla);
+            return View(producto);
         }
 
-        // POST: planillas/Delete/5
+        // POST: productoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            planilla planilla = db.planilla.Find(id);
-            db.planilla.Remove(planilla);
+            producto producto = db.producto.Find(id);
+            db.producto.Remove(producto);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

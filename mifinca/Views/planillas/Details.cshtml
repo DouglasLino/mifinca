@@ -19,11 +19,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.empleado.nombre)
+            @Html.DisplayNameFor(model => model.csv_planilla)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.empleado.nombre)
+            @Html.DisplayFor(model => model.csv_planilla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empleado.nombre_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empleado.nombre_empleado)
         </dd>
 
         <dt>
@@ -37,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_empleado }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_planilla }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

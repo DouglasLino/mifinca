@@ -17,7 +17,8 @@ namespace mifinca.Controllers
         // GET: tareas
         public ActionResult Index()
         {
-            return View(db.tarea.ToList());
+            var tarea = db.tarea.Include(t => t.empleado).Include(t => t.tipo_tarea);
+            return View(tarea.ToList());
         }
 
         // GET: tareas/Details/5
@@ -38,6 +39,8 @@ namespace mifinca.Controllers
         // GET: tareas/Create
         public ActionResult Create()
         {
+            ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado");
+            ViewBag.id_tipo = new SelectList(db.tipo_tarea, "id_tipo", "tipo");
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_tarea,nombre,fecha,descripcion")] tarea tarea)
+        public ActionResult Create([Bind(Include = "id_tarea,id_empleado,id_tipo,fecha_inicio,fecha_fin,descripcion")] tarea tarea)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,8 @@ namespace mifinca.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado", tarea.id_empleado);
+            ViewBag.id_tipo = new SelectList(db.tipo_tarea, "id_tipo", "tipo", tarea.id_tipo);
             return View(tarea);
         }
 
@@ -70,6 +75,8 @@ namespace mifinca.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado", tarea.id_empleado);
+            ViewBag.id_tipo = new SelectList(db.tipo_tarea, "id_tipo", "tipo", tarea.id_tipo);
             return View(tarea);
         }
 
@@ -78,7 +85,7 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_tarea,nombre,fecha,descripcion")] tarea tarea)
+        public ActionResult Edit([Bind(Include = "id_tarea,id_empleado,id_tipo,fecha_inicio,fecha_fin,descripcion")] tarea tarea)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +93,8 @@ namespace mifinca.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado", tarea.id_empleado);
+            ViewBag.id_tipo = new SelectList(db.tipo_tarea, "id_tipo", "tipo", tarea.id_tipo);
             return View(tarea);
         }
 

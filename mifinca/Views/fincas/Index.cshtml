@@ -12,19 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.id_bodega)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.foto_finca)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.nombre_finca)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.extension)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.localizacion)
+            @Html.DisplayNameFor(model => model.planoCatastral)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.localizacionEntrada)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.tablones)
@@ -32,31 +32,43 @@
         <th>
             @Html.DisplayNameFor(model => model.desripcion)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.msnm_altura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bodega.id_bodega)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.id_bodega)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.foto_finca)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.nombre)
+            @Html.DisplayFor(modelItem => item.nombre_finca)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.extension)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.localizacion)
+            @Html.DisplayFor(modelItem => item.planoCatastral)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.localizacionEntrada)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tablones)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.desripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.msnm_altura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bodega.id_bodega)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id_finca }) |

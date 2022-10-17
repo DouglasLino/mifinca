@@ -15,13 +15,13 @@
             @Html.DisplayNameFor(model => model.foto_producto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre_prod)
+            @Html.DisplayNameFor(model => model.nombre_producto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.extension)
+            @Html.DisplayNameFor(model => model.descripcion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.localizacion)
+            @Html.DisplayNameFor(model => model.cantidad)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.bodega.id_bodega)
@@ -35,21 +35,21 @@
             @Html.DisplayFor(modelItem => item.foto_producto)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.nombre_prod)
+            @Html.DisplayFor(modelItem => item.nombre_producto)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.extension)
+            @Html.DisplayFor(modelItem => item.descripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.localizacion)
+            @Html.DisplayFor(modelItem => item.cantidad)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.bodega.id_bodega)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.codigo_producto }) |
-            @Html.ActionLink("Details", "Details", new { id=item.codigo_producto }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.codigo_producto })
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_producto }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_producto }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_producto })
         </td>
     </tr>
 }

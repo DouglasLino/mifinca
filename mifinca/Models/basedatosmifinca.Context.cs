@@ -31,6 +31,7 @@ namespace mifinca.Models
         public virtual DbSet<planilla> planilla { get; set; }
         public virtual DbSet<producto> producto { get; set; }
         public virtual DbSet<tarea> tarea { get; set; }
+        public virtual DbSet<tipo_tarea> tipo_tarea { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
     }
 }

@@ -13,7 +13,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
-                    @Html.ActionLink("miFincaSV", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("miFinca", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                     @*<a class="navbar-brand" href="#">Navbar</a>*@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -21,19 +21,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                               @Html.ActionLink("Propiedades", "Index", "fincas", new { area = "" }, new { @class = "nav-link" })
+                               @Html.ActionLink("Finca", "Index", "fincas", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
-                               @Html.ActionLink("Finanzas", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                               @Html.ActionLink("Finanzas", "Index", "finanzas", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
                                @Html.ActionLink("Planilla", "Index", "planillas", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
-                               @Html.ActionLink("Empleados", "Index", "empleados", new { area = "" }, new { @class = "nav-link" })
+                               @Html.ActionLink("Empleados", "Index", "empleadoes", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
-                               @Html.ActionLink("Bodegas", "Index", "bodegas", new { area = "" }, new { @class = "nav-link" })
+                               @Html.ActionLink("Bodega", "Index", "bodegas", new { area = "" }, new { @class = "nav-link" })
                             </li>
                             <li class="nav-item">
                                @Html.ActionLink("Tareas", "Index", "tareas", new { area = "" }, new { @class = "nav-link" })

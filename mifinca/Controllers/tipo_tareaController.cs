@@ -10,116 +10,107 @@ using mifinca.Models;
 
 namespace mifinca.Controllers
 {
-    public class empleadosController : Controller
+    public class tipo_tareaController : Controller
     {
         private mifincaEntities db = new mifincaEntities();
 
-        // GET: empleados
+        // GET: tipo_tarea
         public ActionResult Index()
         {
-            var empleado = db.empleado.Include(e => e.planilla).Include(e => e.tarea);
-            return View(empleado.ToList());
+            return View(db.tipo_tarea.ToList());
         }
 
-        // GET: empleados/Details/5
+        // GET: tipo_tarea/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            empleado empleado = db.empleado.Find(id);
-            if (empleado == null)
+            tipo_tarea tipo_tarea = db.tipo_tarea.Find(id);
+            if (tipo_tarea == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(tipo_tarea);
         }
 
-        // GET: empleados/Create
+        // GET: tipo_tarea/Create
         public ActionResult Create()
         {
-            ViewBag.id_empleado = new SelectList(db.planilla, "id_empleado", "fecha_resolucion");
-            ViewBag.id_tarea = new SelectList(db.tarea, "id_tarea", "nombre");
             return View();
         }
 
-        // POST: empleados/Create
+        // POST: tipo_tarea/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_empleado,id_finca,id_tarea,nombre,apellido,puesto,direccion,telefono")] empleado empleado)
+        public ActionResult Create([Bind(Include = "id_tipo,tipo")] tipo_tarea tipo_tarea)
         {
             if (ModelState.IsValid)
             {
-                db.empleado.Add(empleado);
+                db.tipo_tarea.Add(tipo_tarea);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_empleado = new SelectList(db.planilla, "id_empleado", "fecha_resolucion", empleado.id_empleado);
-            ViewBag.id_tarea = new SelectList(db.tarea, "id_tarea", "nombre", empleado.id_tarea);
-            return View(empleado);
+            return View(tipo_tarea);
         }
 
-        // GET: empleados/Edit/5
+        // GET: tipo_tarea/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            empleado empleado = db.empleado.Find(id);
-            if (empleado == null)
+            tipo_tarea tipo_tarea = db.tipo_tarea.Find(id);
+            if (tipo_tarea == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id_empleado = new SelectList(db.planilla, "id_empleado", "fecha_resolucion", empleado.id_empleado);
-            ViewBag.id_tarea = new SelectList(db.tarea, "id_tarea", "nombre", empleado.id_tarea);
-            return View(empleado);
+            return View(tipo_tarea);
         }
 
-        // POST: empleados/Edit/5
+        // POST: tipo_tarea/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_empleado,id_finca,id_tarea,nombre,apellido,puesto,direccion,telefono")] empleado empleado)
+        public ActionResult Edit([Bind(Include = "id_tipo,tipo")] tipo_tarea tipo_tarea)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(empleado).State = EntityState.Modified;
+                db.Entry(tipo_tarea).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_empleado = new SelectList(db.planilla, "id_empleado", "fecha_resolucion", empleado.id_empleado);
-            ViewBag.id_tarea = new SelectList(db.tarea, "id_tarea", "nombre", empleado.id_tarea);
-            return View(empleado);
+            return View(tipo_tarea);
         }
 
-        // GET: empleados/Delete/5
+        // GET: tipo_tarea/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            empleado empleado = db.empleado.Find(id);
-            if (empleado == null)
+            tipo_tarea tipo_tarea = db.tipo_tarea.Find(id);
+            if (tipo_tarea == null)
             {
                 return HttpNotFound();
             }
-            return View(empleado);
+            return View(tipo_tarea);
         }
 
-        // POST: empleados/Delete/5
+        // POST: tipo_tarea/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            empleado empleado = db.empleado.Find(id);
-            db.empleado.Remove(empleado);
+            tipo_tarea tipo_tarea = db.tipo_tarea.Find(id);
+            db.tipo_tarea.Remove(tipo_tarea);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
