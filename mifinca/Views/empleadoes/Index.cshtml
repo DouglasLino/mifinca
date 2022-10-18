@@ -4,66 +4,78 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Empleados</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        
         <th>
-            @Html.DisplayNameFor(model => model.nombre_empleado)
+            @*@Html.DisplayNameFor(model => model.nombre_empleado)*@
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.apellido_empleado)
+            @*@Html.DisplayNameFor(model => model.apellido_empleado)*@
+            Apellido
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.direccion_empleado)
+            @*@Html.DisplayNameFor(model => model.direccion_empleado)*@
+            Dirección
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.telefono_empleado)
+            @*@Html.DisplayNameFor(model => model.telefono_empleado)*@
+            Teléfono celular propio
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.telefonoEmergencia_empleado)
+            @*@Html.DisplayNameFor(model => model.telefonoEmergencia_empleado)*@
+            Teléfono celular de emergencia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.qr_empleado)
+            @*@Html.DisplayNameFor(model => model.qr_empleado)*@
+            Código QR
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.finca.foto_finca)
+            @*@Html.DisplayNameFor(model => model.qr_empleado)*@
+            Finca
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_empleado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellido_empleado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion_empleado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono_empleado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefonoEmergencia_empleado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.qr_empleado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.finca.foto_finca)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_empleado }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_empleado }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_empleado })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.nombre_empleado)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.apellido_empleado)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.direccion_empleado)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.telefono_empleado)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.telefonoEmergencia_empleado)
+    </td>
+    <td>
+        
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=/empleadoes/Details/@Html.DisplayFor(modelItem => item.id_empleado)&amp;size=100x100" class="img-thumbnail" />
+        @*<img src="~/imgs/empleados/@Html.DisplayFor(modelItem => item.qr_empleado)" alt="foto del empleado" style="height:200px;width:200px;" />*@
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.finca.nombre_finca)
+    </td>
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id_empleado }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id_empleado }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id_empleado })
+    </td>
+</tr>
 }
 
 </table>

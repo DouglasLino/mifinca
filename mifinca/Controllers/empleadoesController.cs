@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mifinca.Models;
+using System.Drawing;
+
 
 namespace mifinca.Controllers
 {
