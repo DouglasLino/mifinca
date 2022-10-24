@@ -4,14 +4,15 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Información completa de: @Html.DisplayFor(model => model.nombre_empleado) @Html.DisplayFor(model => model.apellido_empleado) </h2>
 
 <div>
-    <h4>empleado</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.nombre_empleado)
+            @*@Html.DisplayNameFor(model => model.nombre_empleado)*@
+            Nombre
         </dt>
 
         <dd>
@@ -19,7 +20,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.apellido_empleado)
+            @*@Html.DisplayNameFor(model => model.apellido_empleado)*@
+            Apellido
         </dt>
 
         <dd>
@@ -27,7 +29,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.direccion_empleado)
+            @*@Html.DisplayNameFor(model => model.direccion_empleado)*@
+            Dirección de recidendia
         </dt>
 
         <dd>
@@ -35,7 +38,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.telefono_empleado)
+            @*@Html.DisplayNameFor(model => model.telefono_empleado)*@
+            Teléfono personal
         </dt>
 
         <dd>
@@ -43,7 +47,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.telefonoEmergencia_empleado)
+            @*@Html.DisplayNameFor(model => model.telefonoEmergencia_empleado)*@
+            Teléfono de emergencia
         </dt>
 
         <dd>
@@ -51,24 +56,29 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.qr_empleado)
+            @*@Html.DisplayNameFor(model => model.qr_empleado)*@
+            QR del empleado
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.qr_empleado)
+            @*@Html.DisplayFor(model => model.qr_empleado)*@
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data=@Html.DisplayFor(model => model.id_empleado)&amp;size=100x100" class="img-thumbnail" />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.finca.foto_finca)
+            @*@Html.DisplayNameFor(model => model.finca.foto_finca)*@
+            Finca en la que trabaja
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.finca.foto_finca)
+            @Html.DisplayFor(model => model.finca.nombre_finca)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_empleado }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-light">@Html.ActionLink("Editar", "Edit", new { id = Model.id_empleado })</button>
+    <button type="button" class="btn btn-light">@Html.ActionLink("Regresar a la lista", "Index")</button>
+</div>
+

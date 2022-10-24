@@ -4,12 +4,142 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<!--<p>-->
+    @*@Html.ActionLink("Create New", "Create")*@
+<!--</p>-->
+@foreach (var item in Model)
+{
+<div class=" row align-items-center m-4">
+    <h1 class="text-center">Mi finca</h1><!-- Tittulo de la seccion en el h1-->
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <!-- Se definen breakpoints y contenedor -->
+        <div id="carouselExampleCaptions"
+             class="carousel slide"
+             data-bs-ride="false">
+            <div class="carousel-indicators">
+                <!-- Indicadores del carouser -->
+                <button type="button"
+                        data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"></button>
+                <button type="button"
+                        data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button"
+                        data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <!-- Primera imagen activa del carouser "active" -->
+                    <img src="~/imgs/fincas/@Html.DisplayFor(modelItem => item.foto_finca)" class="d-block w-100" alt="..." /><!-- Imagen del carrousel -->
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5><!-- Texto del carrousel -->
+                    </div>
+                </div>
+            </div>
+            <!-- Button atras del carrousel -->
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"
+                      aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <!-- Button adelante del carrousel -->
+            <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon"
+                      aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+    <!--OJO: para que funcionen los input solo quitar la opcion disabled-->
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <!-- Se definen breakpoints y contenedor -->
+        <div class="mb-3">
+            <!--Grupo de label e input: Nombre de la finca-->
+            <label for="exampleFormControlInput1" class="form-label">Nombre de la finca</label>
+            <input type="text"
+                   class="form-control"
+                   id="exampleFormControlInput1"
+                   placeholder="name@example.com"
+                   value="@Html.DisplayFor(modelItem => item.nombre_finca)"
+                   disabled />
+        </div>
+        <div class="mb-3">
+            <!--Grupo de label e input: Extension territorial-->
+            <label for="exampleFormControlInput1" class="form-label">Extension territorial</label>
+            <input type="text"
+                   class="form-control"
+                   id="exampleFormControlInput1"
+                   placeholder="name@example.com"
+                   value="@Html.DisplayFor(modelItem => item.extension)m&sup2;"
+                   disabled />
+        </div>
+        <div class="mb-3">
+            <!--Grupo de label e input: Tablones -->
+            <label for="exampleFormControlInput1" class="form-label">Cantidad de tablones:</label>
+            <input type="text"
+                   class="form-control"
+                   id="exampleFormControlInput1"
+                   placeholder="name@example.com"
+                   value="@Html.DisplayFor(modelItem => item.tablones)"
+                   disabled />
+        </div>
+        <div class="mb-3">
+            <!--Grupo de label e input: MSNM -->
+            <label for="exampleFormControlInput1" class="form-label">MSNM(Metros Sobre el Nivel del Mar):</label>
+            <input type="text"
+                   class="form-control"
+                   id="exampleFormControlInput1"
+                   placeholder="name@example.com"
+                   value="@Html.DisplayFor(modelItem => item.msnm_altura)"
+                   disabled />
+        </div>
+
+        <div class="mb-3">
+            <!--Grupo de label y text area: Descripcion-->
+            <label for="exampleFormControlTextarea1" class="form-label">Descripción de la finca:</label>
+            <textarea class="form-control"
+                      id="exampleFormControlTextarea1"
+                      rows="3"
+                      disabled>@Html.DisplayFor(modelItem => item.desripcion)
+            </textarea>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <!--Grupo de label e imagen-->
+        <h3 class="text-center">Plano catastral</h3>
+        <div class="mb-3">
+            <label for="formFile" class="form-label"></label>
+            <input class="form-control" type="file" id="formFile" disabled />
+            <img <img src="~/imgs/plano_catastral/@Html.DisplayFor(modelItem => item.planoCatastral)"
+                 class="rounded mx-auto d-block m-4 img-fluid"
+                 alt="..." />
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12">
+        <!-- Se definen breakpoints y contenedor -->
+        <h3 class="text-center">Ubicacion google maps</h3><!-- Titulo google maps -->
+        <!-- iframe de google maps -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7752.840595459971!2d-89.24215026442796!3d13.692975598438828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6330258c95e0cb%3A0x7a104c6d37aec464!2sColonia%20San%20Benito%2C%20San%20Salvador!5e0!3m2!1ses-419!2ssv!4v1666206086052!5m2!1ses-419!2ssv" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+}
+
+
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.foto_finca)
@@ -78,4 +208,4 @@
     </tr>
 }
 
-</table>
+</table>*@

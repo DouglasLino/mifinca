@@ -75,7 +75,7 @@ namespace mifinca.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", empleado.id_finca);
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "nombre_finca", empleado.id_finca);
             return View(empleado);
         }
 
@@ -89,10 +89,11 @@ namespace mifinca.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(empleado).State = EntityState.Modified;
+                System.Console.WriteLine(db.Entry(empleado).State);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", empleado.id_finca);
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "nombre_finca", empleado.id_finca);
             return View(empleado);
         }
 

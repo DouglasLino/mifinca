@@ -3,66 +3,126 @@
 }
 @*<h2>@Html.ActionLink("Bodega", "Index", "bodegas")</h2>*@
 
+<style>
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }
+
+    .img-fluid {
+        width: 100%;
+        height: 13vw;
+        object-fit: cover;
+    }
+</style>
 
 
+<div class="container">
+    <!-- fila -->
+    <div class="row ">
 
-<div class="row">
-    <div class="col-md-5">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">
-                    @Html.ActionLink("Finca", "Index", "fincas", new { area = "" }, new { @class = "stretched-link" })
-                </h5>
+        <div class="col-lg-4 col-md-12">
+            <!-- card -->
+            <div class="card text-center border border-primary shadow-0 ">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.ActionLink("Finca", "Index", "fincas", new { area = "" }, new { @class = "stretched-link" })</h5>
+                </div>
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="~/imgs/propiedades.jpg" class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </a>
+                </div>
             </div>
-            <img src="~/imgs/propiedades.jpg" class="card-img-bottom" alt="...">
+            <!-- fin card -->
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">
-                    @Html.ActionLink("Planilla", "Index", "planillas", new { area = "" }, new { @class = "stretched-link" })
-                </h5>
+
+        <div class="col-lg-4 col-md-6">
+            <!-- card -->
+            <div class="card text-center border border-primary shadow-0 ">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.ActionLink("Planilla", "Index", "planillas", new { area = "" }, new { @class = "stretched-link" })</h5>
+                </div>
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="~/imgs/planilla.png" class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </a>
+                </div>
             </div>
-            <img src="~/imgs/planilla.png" class="card-img-bottom" alt="...">
+            <!-- fin card -->
         </div>
+
+        <div class="col-lg-4 col-md-6">
+            <!-- card -->
+            <div class="card text-center border border-primary shadow-0 ">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.ActionLink("Finanzas", "Index", "finanzas", new { area = "" }, new { @class = "stretched-link" })</h5>
+                </div>
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="~/imgs/finanzas.jpg" class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </a>
+                </div>
+            </div>
+            <!-- fin card -->
+        </div>
+
     </div>
+    <!-- fin fila -->
+    <!-- fila -->
+    <div class="row mt-4">
 
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">
-                    @Html.ActionLink("Finanzas", "Index","finanzas", new { area = "" }, new { @class = "stretched-link" })
-                </h5>
+        <div class="col-lg-4 col-md-12">
+            <!-- card -->
+            <div class="card text-center border border-primary shadow-0 ">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.ActionLink("Empleados", "Index", "empleadoes", new { area = "" }, new { @class = "stretched-link" })</h5>
+                </div>
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="~/imgs/empleados.jpg" class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </a>
+                </div>
             </div>
-            <img src="~/imgs/finanzas.jpg" class="card-img-bottom" alt="...">
+            <!-- fin card -->
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">
-                    @Html.ActionLink("Empleados", "Index", "empleadoes", new { area = "" }, new { @class = "stretched-link" })
-                </h5>
+
+        <div class="col-lg-4 col-md-6">
+            <!-- card -->
+            <div class="card text-center border border-primary shadow-0 ">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.ActionLink("Tareas", "Index", "tareas", new { area = "" }, new { @class = "stretched-link" })</h5>
+                </div>
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="~/imgs/tarea.png" class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </a>
+                </div>
             </div>
-            <img src="~/imgs/empleados.jpg" class="card-img-bottom" alt="...">
+            <!-- fin card -->
         </div>
+
+        <div class="col-lg-4 col-md-6">
+            <!-- card -->
+            <div class="card text-center border border-primary shadow-0 ">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.ActionLink("Bodega", "Index", "productoes", new { area = "" }, new { @class = "stretched-link" })</h5>
+                </div>
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="~/imgs/bodega.png" class="img-fluid" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </a>
+                </div>
+            </div>
+            <!-- fin card -->
+        </div>
+
     </div>
-
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">
-                    @Html.ActionLink("Tareas", "Index", "tareas", new { area = "" }, new { @class = "stretched-link" })
-                </h5>
-            </div>
-            <img src="~/imgs/tarea.png" class="card-img-bottom" alt="...">
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">
-                    @Html.ActionLink("Bodega", "Index", "productoes", new { area = "" }, new { @class = "stretched-link" })
-                </h5>
-            </div>
-            <img src="~/imgs/bodega.png" class="card-img-bottom" alt="...">
-        </div>
-    </div>
-
-
+    <!-- fin fila -->
 </div>
+

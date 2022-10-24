@@ -3,15 +3,41 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    button a {
+        color: white;
+        text-decoration: none;
+    }
 
-<h2>Empleados</h2>
+        button a:hover {
+            color: white;
+        }
+</style>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<section class="container">
+    <div class=" row align-items-center">
+        <h1 class="text-center">Empleados</h1><!--H1 con el titulo-->
+
+        <div class="col-lg-11 col-md-10 col-sm-12">
+            <!--Se definen Breakpoints-->
+            <div class="input-group">
+                <!--Buscador-->
+                <span class="input-group-text" id="basic-addon1">Empleado:</span>
+                <input type="text" class="form-control" placeholder="Jorge Daniel" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-12">
+            <!--Botton de agregar nuevo empleado-->
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewEmpleado">@Html.ActionLink("Crear empleado", "Create")</button>
+        </div>
+    </div>
+
+</section>
+
 <table class="table">
     <tr>
-        
+
         <th>
             @*@Html.DisplayNameFor(model => model.nombre_empleado)*@
             Nombre
@@ -43,39 +69,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.nombre_empleado)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.apellido_empleado)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.direccion_empleado)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.telefono_empleado)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.telefonoEmergencia_empleado)
-    </td>
-    <td>
-        
-        <img src="https://api.qrserver.com/v1/create-qr-code/?data=/empleadoes/Details/@Html.DisplayFor(modelItem => item.id_empleado)&amp;size=100x100" class="img-thumbnail" />
-        @*<img src="~/imgs/empleados/@Html.DisplayFor(modelItem => item.qr_empleado)" alt="foto del empleado" style="height:200px;width:200px;" />*@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_empleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido_empleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion_empleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono_empleado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefonoEmergencia_empleado)
+            </td>
+            <td>
 
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.finca.nombre_finca)
-    </td>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=/empleadoes/Details/@Html.DisplayFor(modelItem => item.id_empleado)&amp;size=100x100" class="img-thumbnail" />
+                @*<img src="~/imgs/empleados/@Html.DisplayFor(modelItem => item.qr_empleado)" alt="foto del empleado" style="height:200px;width:200px;" />*@
 
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.id_empleado }) |
-        @Html.ActionLink("Details", "Details", new { id = item.id_empleado }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.id_empleado })
-    </td>
-</tr>
-}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.finca.nombre_finca)
+            </td>
+
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_empleado })</button>
+                    <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_empleado })</button>
+                    <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_empleado })</button>
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>
