@@ -4,54 +4,92 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<style>
+    button a {
+        color: white;
+        text-decoration: none;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+        button a:hover {
+            color: white;
+        }
+</style>
+
+
+<section class="container">
+    <div class=" row align-items-center">
+        <h1 class="text-center">Bodega</h1><!--H1 con el titulo-->
+
+        <div class="col-lg-11 col-md-10 col-sm-12">
+            <!--Se definen Breakpoints-->
+            <div class="input-group">
+                <!--Buscador-->
+                <span class="input-group-text" id="basic-addon1">Productos:</span>
+                <input type="text" class="form-control" placeholder="Pesticida, abono"  aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-12">
+            <!--Botton de agregar nuevo empleado-->
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewEmpleado">@Html.ActionLink("Agregar producto", "Create")</button>
+        </div>
+    </div>
+
+</section>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.foto_producto)
+            @*@Html.DisplayNameFor(model => model.foto_producto)*@
+            Foto 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre_producto)
+            @*@Html.DisplayNameFor(model => model.nombre_producto)*@
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descripcion)
+            @*@Html.DisplayNameFor(model => model.descripcion)*@
+            Descripción
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cantidad)
+            @*@Html.DisplayNameFor(model => model.cantidad)*@
+            Cantidad
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.bodega.id_bodega)
-        </th>
+            Nombre de la finca
+        </th>*@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.foto_producto)*@
+                <img src="~/imgs/productos/@Html.DisplayFor(modelItem => item.foto_producto)" alt="foto del producto" style="height:200px;width:200px;" />
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_producto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.bodega.id_bodega)
+            </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.foto_producto)
+     
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_producto })</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_producto })</button>
+                <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_producto })</button>
+            </div>
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_producto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bodega.id_bodega)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_producto }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_producto }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_producto })
-        </td>
-    </tr>
-}
+        </tr>
+    }
 
 </table>

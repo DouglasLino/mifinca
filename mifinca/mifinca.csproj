@@ -208,6 +208,7 @@
     <Content Include="imgs\fincas\finca_1.jpg" />
     <Content Include="imgs\planilla.png" />
     <Content Include="imgs\plano_catastral\plano_catastral_1.png" />
+    <Content Include="imgs\productos\pesticida_1.png" />
     <Content Include="imgs\propiedades.jpg" />
     <Content Include="imgs\tarea.png" />
     <Content Include="imgs\test.jpg" />

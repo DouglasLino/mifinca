@@ -40,7 +40,8 @@ namespace mifinca.Controllers
         public ActionResult Create()
         {
             ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado");
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca");
+            //ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca");
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "nombre_finca");
             return View();
         }
 
@@ -59,7 +60,8 @@ namespace mifinca.Controllers
             }
 
             ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado", planilla.id_empleado);
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", planilla.id_finca);
+            //ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", planilla.id_finca);
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "nombre_finca", planilla.id_finca);
             return View(planilla);
         }
 
@@ -76,7 +78,8 @@ namespace mifinca.Controllers
                 return HttpNotFound();
             }
             ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado", planilla.id_empleado);
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", planilla.id_finca);
+            //ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", planilla.id_finca);
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "nombre_finca", planilla.id_finca);
             return View(planilla);
         }
 

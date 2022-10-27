@@ -4,48 +4,85 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<style>
+    button a {
+        color: white;
+        text-decoration: none;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+        button a:hover {
+            color: white;
+        }
+</style>
+
+
+<section class="container">
+    <div class=" row align-items-center">
+        <h1 class="text-center">Planilla</h1><!--H1 con el titulo-->
+
+        <div class="col-lg-11 col-md-10 col-sm-12">
+            <!--Se definen Breakpoints-->
+            <div class="input-group">
+                <!--Buscador-->
+                <span class="input-group-text" id="basic-addon1">Empleado:</span>
+                <input type="text" class="form-control" placeholder="Jorge Daniel" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-12">
+            <!--Botton de agregar nuevo empleado-->
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewEmpleado">@Html.ActionLink("Agregar planilla", "Create")</button>
+        </div>
+    </div>
+
+</section>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fecha_resolucion)
+            @*@Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@
+            Nombre del empleado
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.csv_planilla)
+            @*@Html.DisplayNameFor(model => model.fecha_resolucion)*@
+            Fech de resolución
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.empleado.nombre_empleado)
+            @*@Html.DisplayNameFor(model => model.csv_planilla)*@
+            Archivo de planilla
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.finca.foto_finca)
+            @*@Html.DisplayNameFor(model => model.finca.foto_finca)*@
+            Nombre de finca
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_resolucion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.csv_planilla)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.empleado.nombre_empleado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.finca.foto_finca)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_planilla }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_planilla }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_planilla })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.empleado.nombre_empleado)
+    </td>
+    <td>
+        @*@Html.DisplayFor(modelItem => item.fecha_resolucion)*@
+        @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_resolucion).ToString()).ToShortDateString()
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.csv_planilla)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.finca.nombre_finca)
+    </td>
+    <td>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_planilla })</button>
+            <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_planilla })</button>
+            <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_planilla })</button>
+        </div>
+    </td>
+</tr>
+    }
 
 </table>

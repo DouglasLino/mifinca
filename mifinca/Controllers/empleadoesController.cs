@@ -41,7 +41,8 @@ namespace mifinca.Controllers
         // GET: empleadoes/Create
         public ActionResult Create()
         {
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca");
+            //ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca");
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "nombre_finca");
             return View();
         }
 
@@ -59,7 +60,8 @@ namespace mifinca.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", empleado.id_finca);
+            //ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", empleado.id_finca);
+            ViewBag.id_finca = new SelectList(db.finca, "id_finca", "nombre_finca", empleado.id_finca);
             return View(empleado);
         }
 

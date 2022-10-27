@@ -4,52 +4,95 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<style>
+    button a {
+        color: white;
+        text-decoration: none;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+        button a:hover {
+            color: white;
+        }
+</style>
+
+<section class="container">
+    <div class=" row align-items-center">
+        <h1 class="text-center">Tareas</h1><!--H1 con el titulo-->
+
+        <div class="col-lg-11 col-md-10 col-sm-12">
+            <!--Se definen Breakpoints-->
+            <div class="input-group">
+                <!--Buscador-->
+                <span class="input-group-text" id="basic-addon1">Tarea:</span>
+                <input type="text" class="form-control" placeholder="Podar, limpiar" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-12">
+
+           <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Asignar tarea", "Create")</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Tipos de tarea", "Index", "tipo_tarea")</button>     
+            </div>
+        </div>
+    </div>
+
+</section>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fecha_inicio)
+            @*@Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@
+            Nombre del empleado
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fecha_fin)
+            @*@Html.DisplayNameFor(model => model.tipo_tarea.tipo)*@
+            Tipo de tarea
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descripcion)
+            @*@Html.DisplayNameFor(model => model.fecha_inicio)*@
+            Fecha de inicio
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.empleado.nombre_empleado)
+            @*@Html.DisplayNameFor(model => model.fecha_fin)*@
+            Fecha fin
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tipo_tarea.tipo)
+            @*@Html.DisplayNameFor(model => model.descripcion)*@
+            Descripción de la tarea
         </th>
+
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.fecha_inicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_fin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.empleado.nombre_empleado)
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tipo_tarea.tipo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_tarea }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_tarea }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_tarea })
+            @*@Html.DisplayFor(modelItem => item.fecha_inicio.ToShortDateString())*@
+            @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_inicio).ToString()).ToShortDateString()
+
+        </td>
+        <td>
+            @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_fin).ToString()).ToShortDateString()
+            @*@Html.DisplayFor(modelItem => item.fecha_fin)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        
+        
+        <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_tarea })</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_tarea })</button>
+                <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_tarea })</button>
+            </div>
         </td>
     </tr>
 }
