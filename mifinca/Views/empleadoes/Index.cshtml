@@ -16,7 +16,7 @@
 
 
 <section class="container">
-    <div class=" row align-items-center">
+    <div class=" row align-items-center mb-3">
         <h1 class="text-center">Empleados</h1><!--H1 con el titulo-->
 
         <div class="col-lg-11 col-md-10 col-sm-12">
@@ -35,76 +35,92 @@
 
 </section>
 
-<table class="table">
-    <tr>
 
-        <th>
-            @*@Html.DisplayNameFor(model => model.nombre_empleado)*@
-            Nombre
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.apellido_empleado)*@
-            Apellido
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.direccion_empleado)*@
-            Dirección
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.telefono_empleado)*@
-            Teléfono celular propio
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.telefonoEmergencia_empleado)*@
-            Teléfono celular de emergencia
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.qr_empleado)*@
-            Código QR
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.qr_empleado)*@
-            Finca
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-striped">
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre_empleado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.apellido_empleado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.direccion_empleado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefono_empleado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefonoEmergencia_empleado)
-            </td>
-            <td>
+        <thead>
+            <tr class="table-dark">
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono celular propio</th>
+                <th scope="col">Teléfono celular de emergencia</th>
+                <th scope="col">Código QR</th>
+                <th scope="col">Finca</th>
 
-                <img src="https://api.qrserver.com/v1/create-qr-code/?data=@Html.DisplayFor(modelItem => item.id_empleado)&amp;size=100x100" class="img-thumbnail" />
-                @*<img src="~/imgs/empleados/@Html.DisplayFor(modelItem => item.qr_empleado)" alt="foto del empleado" style="height:200px;width:200px;" />*@
+            </tr>
+        </thead>
+        <!--
+    <tr class="table-dark">
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.finca.nombre_finca)
-            </td>
-
-            <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_empleado })</button>
-                    <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_empleado })</button>
-                    <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_empleado })</button>
-                </div>
-            </td>
+    <th >
+        @*@Html.DisplayNameFor(model => model.nombre_empleado)*@
+        Nombre
+    </th>
+    <th>
+        @*@Html.DisplayNameFor(model => model.apellido_empleado)*@
+        Apellido
+    </th>
+    <th>
+        @*@Html.DisplayNameFor(model => model.direccion_empleado)*@
+        Dirección
+    </th>
+    <th>
+        @*@Html.DisplayNameFor(model => model.telefono_empleado)*@
+        Teléfono celular propio
+    </th>
+    <th>
+        @*@Html.DisplayNameFor(model => model.telefonoEmergencia_empleado)*@
+        Teléfono celular de emergencia
+    </th>
+    <th>
+        @*@Html.DisplayNameFor(model => model.qr_empleado)*@
+        Código QR
+    </th>
+    <th>
+        @*@Html.DisplayNameFor(model => model.qr_empleado)*@
+        Finca
+    </th>-->
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_empleado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellido_empleado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion_empleado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono_empleado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefonoEmergencia_empleado)
+                </td>
+                <td>
+
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=@Html.DisplayFor(modelItem => item.id_empleado)&amp;size=100x100" class="img-thumbnail" />
+                    @*<img src="~/imgs/empleados/@Html.DisplayFor(modelItem => item.qr_empleado)" alt="foto del empleado" style="height:200px;width:200px;" />*@
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.finca.nombre_finca)
+                </td>
+
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_empleado })</button>
+                        <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_empleado })</button>
+                        <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_empleado })</button>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

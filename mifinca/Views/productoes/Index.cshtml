@@ -17,7 +17,7 @@
 
 
 <section class="container">
-    <div class=" row align-items-center">
+    <div class=" row align-items-center mb-3">
         <h1 class="text-center">Bodega</h1><!--H1 con el titulo-->
 
         <div class="col-lg-11 col-md-10 col-sm-12">
@@ -36,11 +36,26 @@
 
 </section>
 
-<table class="table">
-    <tr>
+
+<div class="table justify-content-center">
+    <table class="table">
+
+        <thead>
+            <tr class="table-dark ">
+                <th scope="col">Foto</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción y dosis</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Nombre de la finca</th>
+            </tr>
+        </thead>
+
+        <!--
+
+    <tr class="table-dark">
         <th>
             @*@Html.DisplayNameFor(model => model.foto_producto)*@
-            Foto 
+            Foto
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.nombre_producto)*@
@@ -55,41 +70,44 @@
             Cantidad
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.bodega.id_bodega)
-            Nombre de la finca
-        </th>*@
-        <th></th>
+                @Html.DisplayNameFor(model => model.bodega.id_bodega)
+                Nombre de la finca
+            </th>*@
+
     </tr>
+        -->
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.foto_producto)*@
-                <img src="~/imgs/productos/@Html.DisplayFor(modelItem => item.foto_producto)" alt="foto del producto" style="height:200px;width:200px;" />
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.foto_producto)*@
+                    <img src="~/imgs/productos/@Html.DisplayFor(modelItem => item.foto_producto)" alt="foto del producto" style="height:200px;width:200px;" />
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre_producto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cantidad)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.bodega.id_bodega)
-            </td>*@
-        <td>
-     
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_producto })</button>
-                <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_producto })</button>
-                <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_producto })</button>
-            </div>
-        </td>
-        </tr>
-    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_producto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantidad)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.bodega.id_bodega)
+                </td>*@
+                <td>
 
-</table>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_producto })</button>
+                        <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_producto })</button>
+                        <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_producto })</button>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

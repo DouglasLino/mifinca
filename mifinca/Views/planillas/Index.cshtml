@@ -17,7 +17,7 @@
 
 
 <section class="container">
-    <div class=" row align-items-center">
+    <div class=" row align-items-center mb-3">
         <h1 class="text-center">Planilla</h1><!--H1 con el titulo-->
 
         <div class="col-lg-11 col-md-10 col-sm-12">
@@ -36,53 +36,57 @@
 
 </section>
 
-<table class="table">
-    <tr>
-        <th>
-            @*@Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@
-            Nombre del empleado
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.fecha_resolucion)*@
-            Fech de resolución
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.csv_planilla)*@
-            Archivo de planilla
-        </th>
 
-        <th>
-            @*@Html.DisplayNameFor(model => model.finca.foto_finca)*@
-            Nombre de finca
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr class="table-dark">
+            <th>
+                @*@Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@
+                Nombre del empleado
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.fecha_resolucion)*@
+                Fech de resolución
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.csv_planilla)*@
+                Archivo de planilla
+            </th>
 
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.empleado.nombre_empleado)
-    </td>
-    <td>
-        @*@Html.DisplayFor(modelItem => item.fecha_resolucion)*@
-        @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_resolucion).ToString()).ToShortDateString()
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.csv_planilla)
-    </td>
+            <th>
+                @*@Html.DisplayNameFor(model => model.finca.foto_finca)*@
+                Nombre de finca
+            </th>
+            <th></th>
+        </tr>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.finca.nombre_finca)
-    </td>
-    <td>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_planilla })</button>
-            <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_planilla })</button>
-            <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_planilla })</button>
-        </div>
-    </td>
-</tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.empleado.nombre_empleado)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.fecha_resolucion)*@
+                    @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_resolucion).ToString()).ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.csv_planilla)
+                </td>
 
-</table>
+                <td>
+                    @Html.DisplayFor(modelItem => item.finca.nombre_finca)
+                </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_planilla })</button>
+                        <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_planilla })</button>
+                        <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_planilla })</button>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
