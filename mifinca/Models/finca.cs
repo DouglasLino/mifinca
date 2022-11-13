@@ -33,7 +33,8 @@ namespace mifinca.Models
         public int tablones { get; set; }
         public string desripcion { get; set; }
         public int msnm_altura { get; set; }
-        public HttpPostedFileBase file { get; set; }
+        public HttpPostedFileBase update_foto_finca { get; set; }
+        public HttpPostedFileBase update_planoCatastral { get; set; }
     
         public virtual bodega bodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

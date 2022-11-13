@@ -83,28 +83,44 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(HttpPostedFileBase file, [Bind(Include = "id_finca,id_bodega,foto_finca,nombre_finca,extension,planoCatastral,localizacionEntrada,tablones,desripcion,msnm_altura")] finca finca )
+        public ActionResult Edit(HttpPostedFileBase update_foto_finca, HttpPostedFileBase update_planoCatastral , [Bind(Include = "id_finca,id_bodega,foto_finca,nombre_finca,extension,planoCatastral,localizacionEntrada,tablones,desripcion,msnm_altura")] finca finca )
         {
             if (ModelState.IsValid)
             {
-                
-                if (file != null)
+
+                if (update_planoCatastral != null)
                 {
-                    string _FileName = Path.GetFileName(file.FileName);
+                    string _FileNamePlanoCatastral = Path.GetFileName(update_planoCatastral.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/imgs/plano_catastral"), _FileNamePlanoCatastral);
+                    update_planoCatastral.SaveAs(_path);
+
+                    finca.planoCatastral = _FileNamePlanoCatastral;
+                    db.Entry(finca).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                if (update_foto_finca != null)
+                {
+                    string _FileName = Path.GetFileName(update_foto_finca.FileName);
                     string _path = Path.Combine(Server.MapPath("~/imgs/fincas"), _FileName);
-                    file.SaveAs(_path);
+                    update_foto_finca.SaveAs(_path);
 
                     finca.foto_finca = _FileName;
                     db.Entry(finca).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
-                }else 
+                }
 
-                //valida si no carga una foto
-                if (finca.foto_finca == null)
+                
+
+                //valida si no carga  foto_finca
+                if (finca.foto_finca == null || finca.planoCatastral == null)
                 {
                     return RedirectToAction("Index");
                 }
+
+
                 db.Entry(finca).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
