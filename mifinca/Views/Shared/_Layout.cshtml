@@ -1,15 +1,18 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <title>miFincaSV</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar fixed-top navbar-expand-lg bg-light">
+    <div class=" fixed-top navbar-expand-md bg-light">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
@@ -19,35 +22,57 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                               @Html.ActionLink("Finca", "Index", "fincas", new { area = "" }, new { @class = "nav-link active" })
+                        <ul class="navbar-nav ">
+                            <li class="nav-item d-inline">                     
+                               <a class="nav-link" href="@Url.Action("Index","fincas")">
+                                 <i class="fas fa-home"></i>
+                                 Fincas
+                               </a>
+                               @*@Html.ActionLink("Finca", "Index", "fincas", new { area = "" }, new { @class = "nav-link active" })*@
                             </li>
                             <li class="nav-item">
-                               @Html.ActionLink("Finanzas", "Index", "finanzas", new { area = "" }, new { @class = "nav-link" })
+                                <a class="nav-link" href="@Url.Action("Index","finanzas")">
+                                    <i class="fa-solid fa-chart-line "></i>
+                                    Finanzas
+                                </a>
+                                    @*@Html.ActionLink("Finanzas", "Index", "finanzas", new { area = "" }, new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item">
-                               @Html.ActionLink("Planilla", "Index", "planillas", new { area = "" }, new { @class = "nav-link" })
+                                <a class="nav-link" href="@Url.Action("Index","planillas")">
+                                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                                    Planilla
+                                </a>
+                                @*@Html.ActionLink("Planilla", "Index", "planillas", new { area = "" }, new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item">
-                               @Html.ActionLink("Empleados", "Index", "empleadoes", new { area = "" }, new { @class = "nav-link" })
+                                <a class="nav-link" href="@Url.Action("Index","empleadoes")">
+                                    <i class="fa-solid fa-people-group"></i>
+                                    Empleados
+                                </a>
+                                @*@Html.ActionLink("Empleados", "Index", "empleadoes", new { area = "" }, new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item">
-                               @Html.ActionLink("Bodega", "Index", "productoes", new { area = "" }, new { @class = "nav-link" })
+                                <a class="nav-link" href="@Url.Action("Index","productoes")">
+                                    <i class="fa-sharp fa-solid fa-warehouse"></i>
+                                    Bodega
+                                </a>
+                                @*@Html.ActionLink("Bodega", "Index", "productoes", new { area = "" }, new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item">
-                               @Html.ActionLink("Tareas", "Index", "tareas", new { area = "" }, new { @class = "nav-link" })
+                                <a class="nav-link" href="@Url.Action("Index","productoes")">
+                                    <i class="fa-solid fa-list-check"></i>
+                                    Tareas
+                                </a>
+                                @*@Html.ActionLink("Tareas", "Index", "tareas", new { area = "" }, new { @class = "nav-link" })*@
                             </li>
 
                         </ul>
-                        
+
                     </div>
                 </div>
             </nav>
         </div>
     </div>
-    
-
 
 
 
@@ -56,7 +81,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - miFincaSV</p>
+            <p>&copy; @DateTime.Now.Year - miFinca</p>
         </footer>
     </div>
 
