@@ -11,7 +11,8 @@ namespace mifinca.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class finca
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,6 +33,7 @@ namespace mifinca.Models
         public int tablones { get; set; }
         public string desripcion { get; set; }
         public int msnm_altura { get; set; }
+        public HttpPostedFileBase file { get; set; }
     
         public virtual bodega bodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

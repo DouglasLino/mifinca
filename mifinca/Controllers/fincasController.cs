@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -82,10 +83,28 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_finca,id_bodega,foto_finca,nombre_finca,extension,planoCatastral,localizacionEntrada,tablones,desripcion,msnm_altura")] finca finca)
+        public ActionResult Edit(HttpPostedFileBase file, [Bind(Include = "id_finca,id_bodega,foto_finca,nombre_finca,extension,planoCatastral,localizacionEntrada,tablones,desripcion,msnm_altura")] finca finca )
         {
             if (ModelState.IsValid)
             {
+                
+                if (file != null)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/imgs/fincas"), _FileName);
+                    file.SaveAs(_path);
+
+                    finca.foto_finca = _FileName;
+                    db.Entry(finca).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }else 
+
+                //valida si no carga una foto
+                if (finca.foto_finca == null)
+                {
+                    return RedirectToAction("Index");
+                }
                 db.Entry(finca).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -93,6 +112,8 @@ namespace mifinca.Controllers
             ViewBag.id_bodega = new SelectList(db.bodega, "id_bodega", "id_bodega", finca.id_bodega);
             return View(finca);
         }
+
+       
 
         // GET: fincas/Delete/5
         public ActionResult Delete(int? id)
