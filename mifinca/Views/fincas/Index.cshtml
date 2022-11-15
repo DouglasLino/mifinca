@@ -4,19 +4,28 @@
     ViewBag.Title = "Index";
 }
 
+@* Mapbox *@
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css"rel="stylesheet" />
 <style>
     button a {
         color: white;
         text-decoration: none;
     }
 
-        button a:hover {
-            color: white;
-        }
+    button a:hover {
+      color: white;
+    }
+    .mapboxgl-ctrl-logo {
+        display: none !important;
+    }
 </style>
 
+
+
+
 <!--<p>-->
-    @*@Html.ActionLink("Create New", "Create")*@
+@*@Html.ActionLink("Create New", "Create")*@
 <!--</p>-->
 @foreach (var item in Model)
 {
@@ -84,16 +93,37 @@
     <div class=" col-sm-12 col-md-12 col-lg-6 align-self-start mb-3">
         <!--Grupo de label e imagen-->
         <h3 class="text-center">Plano catastral</h3>
-        
-           <img src="~/imgs/plano_catastral/@Html.DisplayFor(modelItem => item.planoCatastral)"
-                      class="rounded mx-auto d-block img-fluid"
-                      alt="Imagen de plano catastral" />
-        
+
+        <img src="~/imgs/plano_catastral/@Html.DisplayFor(modelItem => item.planoCatastral)"
+             class="rounded mx-auto d-block img-fluid"
+             alt="Imagen de plano catastral" />
+     
+
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 align-self-start mb-3">
-        <h3 class="text-center">Ubicación google maps</h3>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7752.840595459971!2d-89.24215026442796!3d13.692975598438828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6330258c95e0cb%3A0x7a104c6d37aec464!2sColonia%20San%20Benito%2C%20San%20Salvador!5e0!3m2!1ses-419!2ssv!4v1666206086052!5m2!1ses-419!2ssv" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h3 class="text-center">Ubicación en mapa</h3>
+        <div id="map" style="width: 100%; height: 400px"></div>
     </div>
+
+    <script>
+        
+            mapboxgl.accessToken ="pk.eyJ1IjoiZG91bGluIiwiYSI6ImNsYWdjcHE4dTB4YTUzdm51cm83bGpnOTIifQ.YpA5qWlMFrRs5DXsuNfrhQ";
+
+            const map = new mapboxgl.Map({
+                container: "map", // container ID
+                style: "mapbox://styles/mapbox/streets-v11", // style URL
+                center: [@Html.DisplayFor(modelItem => item.localizacionEntrada)], // starting position [lng, lat]
+                zoom: 14, // starting zoom
+                projection: "globe", // display the map as a 3D globe
+            });
+            map.on("style.load", () => {
+                map.setFog({}); // Set the default atmosphere style
+            });
+            const marker = new mapboxgl.Marker()
+                .setLngLat([@Html.DisplayFor(modelItem => item.localizacionEntrada)])
+                .addTo(map);
+
+    </script>
 
     <button type="button" class="btn btn-primary btn-lg d-flex justify-content-center">@Html.ActionLink("Editar datos", "Edit", new { id = item.id_finca })</button>
 
@@ -104,72 +134,72 @@
 
 
 @*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.foto_finca)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre_finca)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.extension)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.planoCatastral)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.localizacionEntrada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tablones)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.desripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.msnm_altura)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.bodega.id_bodega)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.foto_finca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_finca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.extension)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.planoCatastral)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.localizacionEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tablones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.desripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.msnm_altura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bodega.id_bodega)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.foto_finca)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_finca)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.extension)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.planoCatastral)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.localizacionEntrada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tablones)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.desripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.msnm_altura)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bodega.id_bodega)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_finca }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_finca }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_finca })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.foto_finca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_finca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.extension)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.planoCatastral)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.localizacionEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tablones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.desripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.msnm_altura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bodega.id_bodega)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id_finca }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id_finca }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id_finca })
+            </td>
+        </tr>
+    }
 
-</table>*@
+    </table>*@

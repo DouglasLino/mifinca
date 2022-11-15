@@ -4,11 +4,17 @@
     ViewBag.Title = "Edit";
 }
 
+@* CDN de mapbox *@
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
 
 
 <style>
     .none {
         display: none;
+    }
+    .mapboxgl-ctrl-logo {
+        display: none !important;
     }
 </style>
 
@@ -20,118 +26,203 @@
 @*@using (Html.BeginForm(new { enctype = "multipart/form-data" }))*@
 @using (Html.BeginForm("Edit", "fincas", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
-    {
-        @Html.AntiForgeryToken()
+{
+    @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
+<div class="form-horizontal">
 
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.id_finca)
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id_finca)
 
-            @* Campo oculto *@
-            <div class="form-group none">
-                @Html.LabelFor(model => model.id_bodega, "id_bodega", htmlAttributes: new { @class = "control-label " })
-                <div class="col-md-10">
-                    @Html.DropDownList("id_bodega", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_bodega, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            
-
-
-            <div class="form-group mb-3">
-                @Html.LabelFor(model => model.foto_finca, "Fotografía representativa de la finca", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    <label for="formFile" class="form-label"></label>
-
-                    @Html.TextBox("update_foto_finca", "", new { type = "file", accept = "image/*", @class = "form-control" }) <br />
-
-                    @* Oculto este campo pero se envia *@
-                    @Html.EditorFor(model => model.foto_finca, new { htmlAttributes = new { @class = "form-control none" } })
-                    @Html.ValidationMessageFor(model => model.foto_finca)
-
-                    @*@Html.TextBoxFor(model => model.foto_finca, new { type = "file", accept = "image/*", @class = "form-control" })*@
-                    @*@Html.ValidationMessageFor(model => model.foto_finca, "", new { @class = "text-danger" })*@
-                </div>
-            </div>
-
-            <div class="form-group mb-3">
-                @Html.LabelFor(model => model.nombre_finca, "Nombre de la finca", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.nombre_finca, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.nombre_finca, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group mb-3">
-                @Html.LabelFor(model => model.extension, "Extensión territorial", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.extension, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.extension, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group mb-3">
-                @Html.LabelFor(model => model.planoCatastral, "Fotografía del plano catastral", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-
-                    @Html.TextBox("update_planoCatastral", "", new { type = "file", accept = "image/*", @class = "form-control" }) <br />
-
-                    @* oculto este campo pero se envia *@
-                    @Html.EditorFor(model => model.planoCatastral, new { htmlAttributes = new { @class = "form-control none" } })
-                    @Html.ValidationMessageFor(model => model.planoCatastral, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-            <div class="form-group mb-3">
-                @Html.LabelFor(model => model.tablones, "Cantidad de tablones", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.tablones, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.tablones, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group mb-3">
-                @Html.LabelFor(model => model.desripcion, "Descripción adicional", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.desripcion, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.desripcion, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.msnm_altura, "Cantidad de metros sobre el nivel del mar", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.msnm_altura, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.msnm_altura, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group mb-3">
-                @Html.LabelFor(model => model.localizacionEntrada, "Seleccione la ubicación de la finca", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.localizacionEntrada, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.localizacionEntrada, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Guardar" class="btn btn-default" />
-                </div>
-            </div>
+    @* Campo oculto *@
+    <div class="form-group none">
+        @Html.LabelFor(model => model.id_bodega, "id_bodega", htmlAttributes: new { @class = "control-label " })
+        <div class="col-md-10">
+            @Html.DropDownList("id_bodega", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.id_bodega, "", new { @class = "text-danger" })
         </div>
-    }
-
-    <div>
-        @Html.ActionLink("Salir sin guardar", "Index")
     </div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
 
 
-    }
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.foto_finca, "Fotografía representativa de la finca", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            <label for="formFile" class="form-label"></label>
+
+            @Html.TextBox("update_foto_finca", "", new { type = "file", accept = "image/*", @class = "form-control" }) <br />
+
+            @* Oculto este campo pero se envia *@
+            @Html.EditorFor(model => model.foto_finca, new { htmlAttributes = new { @class = "form-control none" } })
+            @Html.ValidationMessageFor(model => model.foto_finca)
+
+            @*@Html.TextBoxFor(model => model.foto_finca, new { type = "file", accept = "image/*", @class = "form-control" })*@
+            @*@Html.ValidationMessageFor(model => model.foto_finca, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.nombre_finca, "Nombre de la finca", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nombre_finca, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nombre_finca, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.extension, "Extensión territorial", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.extension, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.extension, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.planoCatastral, "Fotografía del plano catastral", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+
+            @Html.TextBox("update_planoCatastral", "", new { type = "file", accept = "image/*", @class = "form-control" }) <br />
+
+            @* oculto este campo pero se envia *@
+            @Html.EditorFor(model => model.planoCatastral, new { htmlAttributes = new { @class = "form-control none" } })
+            @Html.ValidationMessageFor(model => model.planoCatastral, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.tablones, "Cantidad de tablones", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tablones, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tablones, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.desripcion, "Descripción adicional", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.desripcion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.desripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.msnm_altura, "Cantidad de metros sobre el nivel del mar", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.msnm_altura, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.msnm_altura, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.localizacionEntrada, "Seleccione nueva ubicación de la finca", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.localizacionEntrada, new { htmlAttributes = new { @class = "form-control none" } })
+            @Html.ValidationMessageFor(model => model.localizacionEntrada, "", new { @class = "text-danger" })
+            <div id="map" style="width: 100%; height: 400px"></div>
+        </div>
+    </div>
+
+    <script>
+
+        mapboxgl.accessToken = "pk.eyJ1IjoiZG91bGluIiwiYSI6ImNsYWdjcHE4dTB4YTUzdm51cm83bGpnOTIifQ.YpA5qWlMFrRs5DXsuNfrhQ";
+
+        var originGpsArr = [];
+        var test = originGpsArr.push(@Html.DisplayFor(model => model.localizacionEntrada));
+
+        var coordenadas_longitud = originGpsArr[0];
+        var coordenadas_latitud = originGpsArr[1];
+
+        var cont = 0;
+        console.log('lng, lat', coordenadas_longitud, coordenadas_latitud);
+        const map = new mapboxgl.Map({
+            container: "map", // container ID
+            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+            style: "mapbox://styles/mapbox/streets-v11", // style URL
+            center: [coordenadas_longitud, coordenadas_latitud], // starting center in [lng, lat]
+            zoom: 16, // starting zoom
+            projection: "globe", // display map as a 3D globe
+        });
+
+        map.on("style.load", () => {
+            map.setFog({}); // Set the default atmosphere style
+        });
+
+        // agrego geolocalizacion
+        let geolocate = new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true,
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true,
+        })
+        map.addControl(geolocate);
+
+        // muestra marcador por defecto
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        }).setLngLat([coordenadas_longitud, coordenadas_latitud])
+            .addTo(map);
+
+        var myarr = []
+        geolocate.on('geolocate', function (position) {
+            coordenadas_longitud = position.coords.longitude;
+            coordenadas_latitud = position.coords.latitude;
+
+            myarr.push(coordenadas_longitud)
+            myarr.push(coordenadas_latitud)
+            console.log('lng, lat', coordenadas_longitud, coordenadas_latitud);
+            marker.remove()
+            addMarker(myarr[0], myarr[1])
+            cont += 1;
+            console.log(cont)
+        })
+        console.log(myarr);
+
+        function addMarker(long, lati) {
+            if (cont == 0) {
+                console.log("agregando marcador", long, lati);
+                marker_new = new mapboxgl.Marker({
+                    draggable: true
+                })
+                    .setLngLat([long, lati])
+                    .addTo(map);
+            }
+            cont += 1;
+            changeLocationMarket(marker_new);
+        }
+
+        // mover marker
+        function changeLocationMarket(markerName) {
+            function onDragEnd() {
+                const lngLat = markerName.getLngLat();
+                console.log("Longitude:" + lngLat.lng + " Latitude:" + lngLat.lat);
+                document.getElementById("localizacionEntrada").value = lngLat.lng + "," + lngLat.lat;
+            }
+            markerName.on('dragend', onDragEnd);
+        }
+        changeLocationMarket(marker);
+
+    </script>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Salir sin guardar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}
