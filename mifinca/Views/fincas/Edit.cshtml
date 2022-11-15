@@ -48,7 +48,7 @@
 
 
     <div class="form-group mb-3">
-        @Html.LabelFor(model => model.foto_finca, "Fotografía representativa de la finca", htmlAttributes: new { @class = "control-label" })
+        @Html.LabelFor(model => model.foto_finca, "Fotografía de la finca", htmlAttributes: new { @class = "control-label" })
         <div class="col-md-10">
             <label for="formFile" class="form-label"></label>
 
@@ -211,14 +211,19 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Guardar" class="btn btn-default" />
+
+        
+
+            <input type="submit" value="Guardar" class="btn btn-success btn-lg input-block-level form-control mb-2" />
+            @Html.ActionLink("Salir sin guardar", "Index", new { area = "" }, new { @class = "btn btn-danger btn-lg d-flex justify-content-center" })
+
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Salir sin guardar", "Index")
+    @*@Html.ActionLink("Salir sin guardar", "Index")*@
 </div>
 
 @section Scripts {
