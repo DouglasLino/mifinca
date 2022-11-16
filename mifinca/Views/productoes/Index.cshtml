@@ -20,7 +20,7 @@
     <div class=" row align-items-center mb-3">
         <h1 class="text-center">Bodega</h1><!--H1 con el titulo-->
 
-        <div class="col-lg-11 col-md-10 col-sm-12">
+        <div class="col-10 p-0">
             <!--Se definen Breakpoints-->
             <div class="input-group">
                 <!--Buscador-->
@@ -28,17 +28,17 @@
                 <input type="text" class="form-control" placeholder="Pesticida, abono"  aria-describedby="basic-addon1">
             </div>
         </div>
-        <div class="col-lg-1 col-md-2 col-sm-12">
+        <div class="col-2">
             <!--Botton de agregar nuevo empleado-->
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewEmpleado">@Html.ActionLink("Agregar producto", "Create")</button>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#NewEmpleado">@Html.ActionLink("Agregar producto", "Create")</button>
         </div>
     </div>
 
 </section>
 
 
-<div class="table justify-content-center">
-    <table class="table">
+<div class="table-responsive">
+    <table class="table table-striped">
 
         <thead>
             <tr class="table-dark ">

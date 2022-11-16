@@ -4,14 +4,27 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalle de tarea</h2>
 
 <div>
-    <h4>tarea</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.fecha_inicio)
+            @*@Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@Nombre del empleado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empleado.nombre_empleado)
+        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tipo_tarea.tipo)*@Tipo de tarea
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_tarea.tipo)
+        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.fecha_inicio)*@Fecha inicio
         </dt>
 
         <dd>
@@ -19,7 +32,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fecha_fin)
+            @*@Html.DisplayNameFor(model => model.fecha_fin)*@Fecha fin
         </dt>
 
         <dd>
@@ -27,32 +40,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
+            @*@Html.DisplayNameFor(model => model.descripcion)*@Descripción
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.descripcion)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.empleado.nombre_empleado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.empleado.nombre_empleado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tipo_tarea.tipo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tipo_tarea.tipo)
-        </dd>
-
     </dl>
 </div>
-<p>
+<div class="col-md-offset-2 col-md-10">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_tarea }, new { @class = "btn btn-success btn-lg input-block-level form-control mb-2" })
+    @Html.ActionLink("Salir", "Index", new { area = "" }, new { @class = "btn btn-danger btn-lg d-flex justify-content-center" })
+</div>
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id_tarea }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

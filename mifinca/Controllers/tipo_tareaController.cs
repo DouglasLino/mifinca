@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -111,8 +112,26 @@ namespace mifinca.Controllers
         {
             tipo_tarea tipo_tarea = db.tipo_tarea.Find(id);
             db.tipo_tarea.Remove(tipo_tarea);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+            //db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (DbUpdateException ex)
+            {
+                ViewBag.error = "Error al eliminar el tipo de tarea, es probable que tenga tareas asignadas a empleados con este tipo de tarea. " ;
+                return View();
+            }
+            //catch (DbUpdateConcurrencyException ex)
+            //{
+
+            //}
+
+
+
+            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -4,30 +4,73 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<style>
+    button a {
+        color: white;
+        text-decoration: none;
+    }
 
-<p>
+        button a:hover {
+            color: white;
+        }
+</style>
+
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tipo)
-        </th>
-        <th></th>
-    </tr>
+</p>*@
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tipo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_tipo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_tipo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_tipo })
-        </td>
-    </tr>
-}
+<section class="container">
+    <div class=" row align-items-center mb-3">
+        <h1 class="text-center">Tipos de tareas</h1><!--H1 con el titulo-->
 
-</table>
+        <div class="col-10 p-0">
+            <!--Se definen Breakpoints-->
+            <div class="input-group">
+                <!--Buscador-->
+                <span class="input-group-text" id="basic-addon1">Tarea:</span>
+                <input type="text" class="form-control" placeholder="Podar, limpiar" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div class="col-2">
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-success">@Html.ActionLink("Crear tipo de tarea", "Create")</button>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div class="">
+    <table class="table table-striped w-auto">
+        <tr class="table-dark">
+            <th>
+                @*@Html.DisplayNameFor(model => model.tipo)*@ Nombre
+            </th>
+
+
+            <th class="pl-6"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipo)
+                </td>
+
+
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example pl-6">
+                        <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_tipo })</button>
+                        <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_tipo })</button>
+                        <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_tipo })</button>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

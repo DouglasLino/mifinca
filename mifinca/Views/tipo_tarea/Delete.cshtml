@@ -2,31 +2,45 @@
 
 @{
     ViewBag.Title = "Delete";
+    
 }
 
-<h2>Delete</h2>
+<h2>Eliminar tipo de tarea</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Esta seguro eliminar el tipo de tarea?</h3>
 <div>
-    <h4>tipo_tarea</h4>
+    <p class="text-danger">La siguiente acción no se puede deshacer </p>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.tipo)
+            @*@Html.DisplayNameFor(model => model.tipo)*@ Nombre del tipo de tarea
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.tipo)
+            @*@Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })*@
         </dd>
+
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    <h3 class="text-center text-danger" style="text-decoration: underline;">@ViewBag.error</h3>
+    
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-12">
+                <input type="submit" value="Eliminar" class="btn btn-danger btn-lg input-block-level form-control mb-2" />
+                @Html.ActionLink("Salir sin eliminar", "Index", new { area = "" }, new { @class = "btn btn-success btn-lg d-flex justify-content-center" })
+            </div>
         </div>
     }
 </div>

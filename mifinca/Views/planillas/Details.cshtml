@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalle de la planilla</h2>
 
 <div>
-    <h4>planilla</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,7 +18,7 @@
         </dd>
 
         <dt>
-            @*Html.DisplayNameFor(model => model.csv_planilla)*@Link Planilla
+            @*Html.DisplayNameFor(model => model.csv_planilla)*@Enlace de la Planilla
         </dt>
 
         <dd>
@@ -45,6 +44,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_planilla }) |
-    @Html.ActionLink("Back to List", "Index")
+    <div class="col-md-offset-2 col-md-10">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id_planilla }, new { @class = "btn btn-success btn-lg input-block-level form-control mb-2" })
+        @Html.ActionLink("Salir", "Index", new { area = "" }, new { @class = "btn btn-danger btn-lg d-flex justify-content-center" })
+    </div>
+   
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

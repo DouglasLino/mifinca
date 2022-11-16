@@ -4,15 +4,15 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Eliminar producto</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Esta seguro eliminar el producto: @Html.DisplayFor(model => model.nombre_producto)?</h3>
 <div>
-    <h4>producto</h4>
+    <p class="text-danger">La siguiente acción no se puede deshacer </p>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.foto_producto)
+            @*@Html.DisplayNameFor(model => model.foto_producto)*@Foto del producto
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.nombre_producto)
+            @*@Html.DisplayNameFor(model => model.nombre_producto)*@Nombre del producto
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
+            @*@Html.DisplayNameFor(model => model.descripcion)*@Descripción del producto
         </dt>
 
         <dd>
@@ -36,29 +36,38 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cantidad)
+            @*@Html.DisplayNameFor(model => model.cantidad)*@Cantidad del producto
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.cantidad)
         </dd>
 
-        <dt>
+        <dt class="d-none">
             @Html.DisplayNameFor(model => model.bodega.id_bodega)
         </dt>
 
-        <dd>
+        <dd class="d-none">
             @Html.DisplayFor(model => model.bodega.id_bodega)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Eliminar" class="btn btn-danger btn-lg input-block-level form-control mb-2" />
+                @Html.ActionLink("Salir sin eliminar", "Index", new { area = "" }, new { @class = "btn btn-success btn-lg d-flex justify-content-center" })
+            </div>
+        </div>
+
+        @*<div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
-        </div>
+        </div>*@
+
     }
 </div>

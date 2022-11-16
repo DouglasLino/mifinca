@@ -19,82 +19,85 @@
     <div class=" row align-items-center mb-3">
         <h1 class="text-center">Tareas</h1><!--H1 con el titulo-->
 
-        <div class="col-lg-11 col-md-10 col-sm-12">
+        <div class="col-10 p-0">
             <!--Se definen Breakpoints-->
             <div class="input-group">
                 <!--Buscador-->
-                <span class="input-group-text" id="basic-addon1">Tarea:</span>
-                <input type="text" class="form-control" placeholder="Podar, limpiar" aria-label="Username" aria-describedby="basic-addon1">
+                <span class="input-group-text" id="basic-addon1">Empleado:</span>
+                <input type="text" class="form-control" placeholder="Juan, Pedro" aria-label="Username" aria-describedby="basic-addon1">
             </div>
         </div>
-        <div class="col-lg-1 col-md-2 col-sm-12">
+        <div class="col-2">
 
            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary">@Html.ActionLink("Asignar tarea", "Create")</button>
+                <button type="button" class="btn btn-success">@Html.ActionLink("Asignar tarea", "Create")</button>
                 <button type="button" class="btn btn-secondary">@Html.ActionLink("Tipos de tarea", "Index", "tipo_tarea")</button>     
             </div>
         </div>
     </div>
 
 </section>
-<table class="table">
-    <tr class="table-dark">
-        <th>
-            @*@Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@
-            Nombre del empleado
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.tipo_tarea.tipo)*@
-            Tipo de tarea
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.fecha_inicio)*@
-            Fecha de inicio
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.fecha_fin)*@
-            Fecha fin
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.descripcion)*@
-            Descripción de la tarea
-        </th>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr class="table-dark">
+            <th>
+                @*@Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@
+                Nombre del empleado
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.tipo_tarea.tipo)*@
+                Tipo de tarea
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.fecha_inicio)*@
+                Fecha de inicio
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.fecha_fin)*@
+                Fecha fin
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.descripcion)*@
+                Descripción de la tarea
+            </th>
 
 
-        <th></th>
-    </tr>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.empleado.nombre_empleado)
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.empleado.nombre_empleado)
 
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tipo_tarea.tipo)
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.fecha_inicio.ToShortDateString())*@
-            @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_inicio).ToString()).ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipo_tarea.tipo)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.fecha_inicio.ToShortDateString())*@
+                @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_inicio).ToString()).ToShortDateString()
 
-        </td>
-        <td>
-            @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_fin).ToString()).ToShortDateString()
-            @*@Html.DisplayFor(modelItem => item.fecha_fin)*@
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
+            </td>
+            <td>
+                @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_fin).ToString()).ToShortDateString()
+                @*@Html.DisplayFor(modelItem => item.fecha_fin)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
         
         
-        <td>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_tarea })</button>
-                <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_tarea })</button>
-                <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_tarea })</button>
-            </div>
-        </td>
-    </tr>
-}
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">@Html.ActionLink("Editar", "Edit", new { id = item.id_tarea })</button>
+                    <button type="button" class="btn btn-secondary">@Html.ActionLink("Detalle", "Details", new { id = item.id_tarea })</button>
+                    <button type="button" class="btn btn-danger">@Html.ActionLink("Eliminar", "Delete", new { id = item.id_tarea })</button>
+                </div>
+            </td>
+        </tr>
+    }
 
-</table>
+    </table>
+</div>

@@ -39,7 +39,7 @@
     html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 
     document.getElementById("html5-qrcode-anchor-scan-type-change").style.visibility = "hidden";
-    document.getElementById("html5-qrcode-button-camera-permission").innerHTML = "Escanear código QR";
+    document.getElementById("html5-qrcode-button-camera-permission").innerHTML = "Escanear código QR del empleado";
 
 </script>
 
@@ -49,62 +49,69 @@
     @Html.AntiForgeryToken()
 
     
-    <div class="form-horizontal mt-5">
-       
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_empleado, "Nombre del empleado", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("id_empleado", null, htmlAttributes: new { @class = "form-control", @id = "code_select" })
-                @Html.ValidationMessageFor(model => model.id_empleado, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        
+<div class="form-horizontal mt-5">
 
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_tipo, "Tipo de tarea", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("id_tipo", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_tipo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.fecha_inicio, "Fecha Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_inicio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha_inicio, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.fecha_fin, "Fecha Fin", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_fin, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha_fin, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.descripcion, "Descripcion", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.id_empleado, "Nombre del empleado", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.DropDownList("id_empleado", null, htmlAttributes: new { @class = "form-control", @id = "code_select" })
+            @Html.ValidationMessageFor(model => model.id_empleado, "", new { @class = "text-danger" })
         </div>
     </div>
+
+
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.id_tipo, "Tipo de tarea", htmlAttributes: new { @class = "control-label " })
+        <div class="col-md-10">
+            @Html.DropDownList("id_tipo", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.id_tipo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.fecha_inicio, "Fecha Inicio", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fecha_inicio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fecha_inicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.fecha_fin, "Fecha Fin", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fecha_fin, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fecha_fin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.descripcion, "Descripcion", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-success btn-lg input-block-level form-control mb-2" />
+            @Html.ActionLink("Salir sin guardar", "Index", new { area = "" }, new { @class = "btn btn-danger btn-lg d-flex justify-content-center" })
+        </div>
+    </div>
+</div>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

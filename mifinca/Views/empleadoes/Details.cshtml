@@ -77,8 +77,13 @@
     </dl>
 </div>
 
-<div class="btn-group" role="group" aria-label="Basic example">
+<div class="col-md-offset-2 col-md-10">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_empleado }, new { @class = "btn btn-success btn-lg input-block-level form-control mb-2" })
+    @Html.ActionLink("Salir", "Index", new { area = "" }, new { @class = "btn btn-danger btn-lg d-flex justify-content-center" })
+</div>
+
+@*<div class="btn-group" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-light">@Html.ActionLink("Editar", "Edit", new { id = Model.id_empleado })</button>
     <button type="button" class="btn btn-light">@Html.ActionLink("Regresar a la lista", "Index")</button>
-</div>
+</div>*@
 
