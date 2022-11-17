@@ -11,7 +11,8 @@ namespace mifinca.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tarea
     {
         public int id_tarea { get; set; }
@@ -19,6 +20,7 @@ namespace mifinca.Models
         public int id_tipo { get; set; }
         public System.DateTime fecha_inicio { get; set; }
         public System.DateTime fecha_fin { get; set; }
+        [Required]
         public string descripcion { get; set; }
     
         public virtual empleado empleado { get; set; }

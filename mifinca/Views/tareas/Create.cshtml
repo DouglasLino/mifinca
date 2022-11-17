@@ -73,17 +73,29 @@
     <div class="form-group mb-3">
         @Html.LabelFor(model => model.fecha_inicio, "Fecha Inicio", htmlAttributes: new { @class = "control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.fecha_inicio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.fecha_inicio, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
             @Html.ValidationMessageFor(model => model.fecha_inicio, "", new { @class = "text-danger" })
         </div>
+        <script>
+            const elem_fecha_inicio = document.querySelector('input[name="fecha_inicio"]');
+            const datepicker_fecha_inicio = new Datepicker(elem_fecha_inicio, {
+                format: "yyyy/mm/dd"
+            });
+        </script>
     </div>
 
     <div class="form-group mb-3">
         @Html.LabelFor(model => model.fecha_fin, "Fecha Fin", htmlAttributes: new { @class = "control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.fecha_fin, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.fecha_fin, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
             @Html.ValidationMessageFor(model => model.fecha_fin, "", new { @class = "text-danger" })
         </div>
+        <script>
+            const elem_fecha_fin = document.querySelector('input[name="fecha_fin"]');
+            const datepicker_fecha_fin = new Datepicker(elem_fecha_fin, {
+                format: "yyyy/mm/dd"
+            });
+        </script>
     </div>
 
     <div class="form-group mb-3">

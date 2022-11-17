@@ -15,16 +15,17 @@
 
         <dd>
             @*@Html.DisplayFor(model => model.fecha_resolucion)*@
-            @DateTime.Parse(Html.DisplayFor(model => model.fecha_resolucion).ToString()).ToShortDateString()
+            @Model.fecha_resolucion.ToString("yyyy/MM/dd")
+            @*@DateTime.Parse(Html.DisplayFor(model => model.fecha_resolucion).ToString()).ToShortDateString()*@
         </dd>
 
-        <dt>
-            @*Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@Nombre de Empleado
+        @*<dt>
+            Html.DisplayNameFor(model => model.empleado.nombre_empleado)Nombre de Empleado
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.empleado.nombre_empleado)
-        </dd>
+        </dd>*@
 
         @*<dt>
                 Html.DisplayNameFor(model => model.finca.foto_finca)Foto Finca

@@ -28,7 +28,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha_inicio)
+            @Model.fecha_inicio.ToString("yyyy/MM/dd")
+            @*@Html.DisplayFor(model => model.fecha_inicio)*@
         </dd>
 
         <dt>
@@ -36,7 +37,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha_fin)
+            @Model.fecha_fin.ToString("yyyy/MM/dd")
+
+            @*@Html.DisplayFor(model => model.fecha_fin)*@
         </dd>
 
         <dt>

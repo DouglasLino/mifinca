@@ -17,7 +17,9 @@
 
         <dd>
             @*@Html.DisplayFor(model => model.fecha_resolucion)*@
-            @DateTime.Parse(Html.DisplayFor(model => model.fecha_resolucion).ToString()).ToShortDateString()
+            
+            @Model.fecha_resolucion.ToString("yyyy/MM/dd")
+            @*@DateTime.Parse(Html.DisplayFor(model => model.fecha_resolucion).ToString()).ToShortDateString()*@
 
         </dd>
 

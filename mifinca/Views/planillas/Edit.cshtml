@@ -4,6 +4,12 @@
     ViewBag.Title = "Edit";
 }
 
+<!-- Bootstrap DatePicker -->
+<script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<!-- Bootstrap DatePicker -->
 <style>
     .none {
         display: none;
@@ -49,17 +55,25 @@
             <div class="col-md-10">
 
                 @Html.EditorFor(model => model.fecha_resolucion,
-                                new{htmlAttributes = new{@class = "form-control datepicker",
-                                    @Value = Model.fecha_resolucion.Date.ToString("dd-MM-yyyy")}})
+                                new{ htmlAttributes = new { @class = "form-control",
+                                    @Value = Model.fecha_resolucion.Date.ToString("yyyy/MM/dd")}})
                 @Html.ValidationMessageFor(model => model.fecha_resolucion, "", new { @class = "text-danger" })
+
+                <script>
+                    const elem = document.querySelector('input[name="fecha_resolucion"]');
+                    const datepicker = new Datepicker(elem, {
+                        format: "yyyy/mm/dd"
+                    });
+                </script>
             </div>
         </div>
+
 
         <div class="form-group mb-3">
             @Html.LabelFor(model => model.csv_planilla, "Archivo de Planilla", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 @Html.TextBox("update_csv_planilla", "", new { type = "file", accept = ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel", @class = "form-control" }) <br />
-                
+
                 @* Oculto este campo pero se envia *@
                 @Html.EditorFor(model => model.csv_planilla, new { htmlAttributes = new { @class = "form-control d-none" } })
                 @Html.ValidationMessageFor(model => model.csv_planilla, "", new { @class = "text-danger" })
@@ -79,6 +93,9 @@
 
 
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
 }

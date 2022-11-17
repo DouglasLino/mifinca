@@ -51,7 +51,7 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HttpPostedFileBase insert_csv_planilla, [Bind(Include = "id_planilla,id_empleado,id_finca,fecha_resolucion,csv_planilla")] planilla planilla)
+        public ActionResult Create(HttpPostedFileBase  insert_csv_planilla , [Bind(Include = "id_planilla,id_empleado,id_finca,fecha_resolucion,csv_planilla")] planilla planilla )
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace mifinca.Controllers
                     return RedirectToAction("Index");
                 }
 
-
+                
                 db.planilla.Add(planilla);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -128,6 +128,8 @@ namespace mifinca.Controllers
             ViewBag.id_empleado = new SelectList(db.empleado, "id_empleado", "nombre_empleado", planilla.id_empleado);
             ViewBag.id_finca = new SelectList(db.finca, "id_finca", "foto_finca", planilla.id_finca);
             return View(planilla);
+
+            //return RedirectToAction("Index");
         }
 
         // GET: planillas/Delete/5
