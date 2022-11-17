@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,10 +49,24 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_producto,id_bodega,foto_producto,nombre_producto,descripcion,cantidad")] producto producto)
+        public ActionResult Create(HttpPostedFileBase insert_foto_producto, [Bind(Include = "id_producto,id_bodega,foto_producto,nombre_producto,descripcion,cantidad")] producto producto)
         {
             if (ModelState.IsValid)
             {
+                if (insert_foto_producto != null)
+                {
+                    string _FileNameInsertFotoProducto = Path.GetFileName(insert_foto_producto.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/imgs/productos"), _FileNameInsertFotoProducto);
+                    insert_foto_producto.SaveAs(_path);
+
+                    producto.foto_producto = _FileNameInsertFotoProducto;
+                    db.producto.Add(producto);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+
+
                 db.producto.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,10 +97,24 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_producto,id_bodega,foto_producto,nombre_producto,descripcion,cantidad")] producto producto)
+        public ActionResult Edit(HttpPostedFileBase update_foto_producto, [Bind(Include = "id_producto,id_bodega,foto_producto,nombre_producto,descripcion,cantidad")] producto producto)
         {
             if (ModelState.IsValid)
             {
+                if (update_foto_producto != null)
+                {
+                    string _FileNameUpdateFotoProducto = Path.GetFileName(update_foto_producto.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/imgs/productos"), _FileNameUpdateFotoProducto);
+                    update_foto_producto.SaveAs(_path);
+
+                    producto.foto_producto= _FileNameUpdateFotoProducto;
+                    db.Entry(producto).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+
+
                 db.Entry(producto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

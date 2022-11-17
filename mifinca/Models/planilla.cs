@@ -11,7 +11,8 @@ namespace mifinca.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class planilla
     {
         public int id_planilla { get; set; }
@@ -22,5 +23,8 @@ namespace mifinca.Models
     
         public virtual empleado empleado { get; set; }
         public virtual finca finca { get; set; }
+
+        public HttpPostedFileBase insert_csv_planilla { get; set; }
+        public HttpPostedFileBase update_csv_planilla { get; set; }
     }
 }

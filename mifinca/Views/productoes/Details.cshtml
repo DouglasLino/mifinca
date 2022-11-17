@@ -14,7 +14,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.foto_producto)
+            @*@Html.DisplayFor(model => model.foto_producto)*@
+            <img src="~/imgs/productos/@Html.DisplayFor(model => model.foto_producto)" alt="foto del producto" style="height:200px;width:200px;" />
         </dd>
 
         <dt>

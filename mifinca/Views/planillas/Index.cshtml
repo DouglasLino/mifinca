@@ -40,10 +40,10 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <tr class="table-dark">
-            <th>
-                @*@Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.empleado.nombre_empleado)
                 Nombre del empleado
-            </th>
+            </th>*@
             <th>
                 @*@Html.DisplayNameFor(model => model.fecha_resolucion)*@
                 Fech de resolución
@@ -63,9 +63,9 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.empleado.nombre_empleado)
-                </td>
+                </td>*@
                 <td>
                     @*@Html.DisplayFor(modelItem => item.fecha_resolucion)*@
                     @DateTime.Parse(Html.DisplayFor(modelItem => item.fecha_resolucion).ToString()).ToShortDateString()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -50,10 +51,23 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_planilla,id_empleado,id_finca,fecha_resolucion,csv_planilla")] planilla planilla)
+        public ActionResult Create(HttpPostedFileBase insert_csv_planilla, [Bind(Include = "id_planilla,id_empleado,id_finca,fecha_resolucion,csv_planilla")] planilla planilla)
         {
             if (ModelState.IsValid)
             {
+                if (insert_csv_planilla != null)
+                {
+                    string _FileNameInsertPlanilla = Path.GetFileName(insert_csv_planilla.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/planilla"), _FileNameInsertPlanilla);
+                    insert_csv_planilla.SaveAs(_path);
+
+                    planilla.csv_planilla = _FileNameInsertPlanilla;
+                    db.planilla.Add(planilla);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+
                 db.planilla.Add(planilla);
                 db.SaveChanges();
                 return RedirectToAction("Index");

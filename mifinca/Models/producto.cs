@@ -11,7 +11,8 @@ namespace mifinca.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class producto
     {
         public int id_producto { get; set; }
@@ -20,7 +21,9 @@ namespace mifinca.Models
         public string nombre_producto { get; set; }
         public string descripcion { get; set; }
         public int cantidad { get; set; }
-    
+        public HttpPostedFileBase insert_foto_producto { get; set; }
+        public HttpPostedFileBase update_foto_producto { get; set; }
+
         public virtual bodega bodega { get; set; }
     }
 }
