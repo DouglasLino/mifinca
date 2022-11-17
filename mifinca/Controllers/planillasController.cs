@@ -102,10 +102,25 @@ namespace mifinca.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_planilla,id_empleado,id_finca,fecha_resolucion,csv_planilla")] planilla planilla)
+        public ActionResult Edit(HttpPostedFileBase update_csv_planilla, [Bind(Include = "id_planilla,id_empleado,id_finca,fecha_resolucion,csv_planilla")] planilla planilla)
         {
             if (ModelState.IsValid)
             {
+
+                if (update_csv_planilla != null)
+                {
+                    string _FileNameUpdatePlanilla = Path.GetFileName(update_csv_planilla.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/planilla"), _FileNameUpdatePlanilla);
+                    update_csv_planilla.SaveAs(_path);
+
+                    planilla.csv_planilla = _FileNameUpdatePlanilla;
+                    db.Entry(planilla).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+
+
                 db.Entry(planilla).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

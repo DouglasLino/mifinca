@@ -6,7 +6,7 @@
 
 <h2>Eliminar planilla</h2>
 
-<h3>¿Esta seguro eliminar la planilla del empleado?</h3>
+<h3>¿Esta seguro eliminar la planilla?</h3>
 <div>
     <p class="text-danger">La siguiente acción no se puede deshacer </p>
     <hr />
@@ -16,31 +16,33 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha_resolucion)
+            @*@Html.DisplayFor(model => model.fecha_resolucion)*@
+            @DateTime.Parse(Html.DisplayFor(model => model.fecha_resolucion).ToString()).ToShortDateString()
+
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.csv_planilla)*@Enlace de la Planilla
+            @*@Html.DisplayNameFor(model => model.csv_planilla)*@Archivo de la planilla
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.csv_planilla)
         </dd>
 
-        <dt>
-            @*@Html.DisplayNameFor(model => model.empleado.nombre_empleado)*@Nombre de Empleado
+        @*<dt>
+            @Html.DisplayNameFor(model => model.empleado.nombre_empleado) Nombre de Empleado
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.empleado.nombre_empleado)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.finca.foto_finca)
+            @*@Html.DisplayNameFor(model => model.finca.nombre_finca)*@ Nombre de finca
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.finca.foto_finca)
+            @Html.DisplayFor(model => model.finca.nombre_finca)
         </dd>
 
     </dl>
