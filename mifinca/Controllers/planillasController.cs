@@ -57,7 +57,7 @@ namespace mifinca.Controllers
             {
                 if (insert_csv_planilla != null)
                 {
-                    string _FileNameInsertPlanilla = Path.GetFileName(insert_csv_planilla.FileName + ".ghseet");
+                    string _FileNameInsertPlanilla = Path.GetFileName(insert_csv_planilla.FileName + ".gsheet");
                     string _path = Path.Combine(Server.MapPath("~/planilla"), _FileNameInsertPlanilla);
                     insert_csv_planilla.SaveAs(_path);
 
@@ -109,7 +109,7 @@ namespace mifinca.Controllers
 
                 if (update_csv_planilla != null)
                 {
-                    string _FileNameUpdatePlanilla = Path.GetFileName(update_csv_planilla.FileName + ".ghseet");
+                    string _FileNameUpdatePlanilla = Path.GetFileName(update_csv_planilla.FileName + ".gsheet");
                     string _path = Path.Combine(Server.MapPath("~/planilla"), _FileNameUpdatePlanilla);
                     update_csv_planilla.SaveAs(_path);
 
