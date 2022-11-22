@@ -39,17 +39,18 @@
         </div>
     </div>
 
+
     <div class="form-group mb-3">
         @Html.LabelFor(model => model.fecha_resolucion, "Fecha de resolución", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.fecha_resolucion, new { htmlAttributes = new { @class = "form-control" , autocomplete = "off" } })
+            @Html.EditorFor(model => model.fecha_resolucion, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
             @Html.ValidationMessageFor(model => model.fecha_resolucion, "", new { @class = "text-danger" })
         </div>
         <script>
-                    const elem = document.querySelector('input[name="fecha_resolucion"]');
-                    const datepicker = new Datepicker(elem, {
-                        format: "yyyy/mm/dd"
-                    });
+            const elem = document.querySelector('input[name="fecha_resolucion"]');
+            const datepicker = new Datepicker(elem, {
+                format: "yyyy/mm/dd"
+            });
         </script>
     </div>
 
@@ -57,7 +58,7 @@
         @Html.LabelFor(model => model.csv_planilla, "CSV de la planilla", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextBox("insert_csv_planilla", "", new { type = "file", accept = ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel", @class = "form-control" }) <br />
-            
+
             @*@Html.EditorFor(model => model.csv_planilla, new { htmlAttributes = new { @class = "form-control d-none" } })*@
             @*@Html.ValidationMessageFor(model => model.csv_planilla, "", new { @class = "text-danger" })*@
         </div>

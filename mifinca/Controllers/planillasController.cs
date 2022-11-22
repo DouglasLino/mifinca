@@ -16,6 +16,9 @@ namespace mifinca.Controllers
         private mifincaEntities db = new mifincaEntities();
 
         // GET: planillas
+
+        
+
         public ActionResult Index()
         {
             var planilla = db.planilla.Include(p => p.empleado).Include(p => p.finca);

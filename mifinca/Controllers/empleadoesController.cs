@@ -17,10 +17,26 @@ namespace mifinca.Controllers
         private mifincaEntities db = new mifincaEntities();
 
         // GET: empleadoes
+        
+
         public ActionResult Index()
         {
             var empleado = db.empleado.Include(e => e.finca);
             return View(empleado.ToList());
+        }
+
+        public ActionResult Look(string nombre)
+        {
+            if (nombre == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            empleado empleado = db.empleado.Find(nombre);
+            if (empleado == null)
+            {
+                return HttpNotFound();
+            }
+            return View(empleado);
         }
 
         // GET: empleadoes/Details/5
